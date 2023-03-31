@@ -35,43 +35,4 @@ export class Neis extends NeisRequest {
 
     return schools
   }
-
-  async getEleMidSchool(
-    ATPT_OFCDC_SC_CODE?: string,
-    SD_SCHUL_CODE?: string
-  ): Promise<EleMidSchool | EleMidSchool[]> {
-    const data = await this.schoolInfoRaw(ATPT_OFCDC_SC_CODE, SD_SCHUL_CODE)
-
-    const schools: EleMidSchool[] = []
-    for await (const item of data) {
-      if (
-        item.SCHUL_KND_SC_NM === '초등학교' ||
-        item.SCHUL_KND_SC_NM === '중학교'
-      ) {
-        schools.push(new EleMidSchool(this, item as EleMidSchoolInfo))
-      }
-    }
-
-    if (schools.length === 1) return schools[0]
-
-    return schools
-  }
-
-  async getHighSchool(
-    ATPT_OFCDC_SC_CODE?: string,
-    SD_SCHUL_CODE?: string
-  ): Promise<HighSchool | HighSchool[]> {
-    const data = await this.schoolInfoRaw(ATPT_OFCDC_SC_CODE, SD_SCHUL_CODE)
-
-    const schools: HighSchool[] = []
-    for await (const item of data) {
-      if (item.SCHUL_KND_SC_NM === '고등학교') {
-        schools.push(new HighSchool(this, item as HighSchoolInfo))
-      }
-    }
-
-    if (schools.length === 1) return schools[0]
-
-    return schools
-  }
 }
