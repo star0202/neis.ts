@@ -44,7 +44,7 @@ export class NeisRequest {
     }
 
     try {
-      this.logger?.debug(`${method} /${config.url} with params:`, config.params)
+      this.logger?.debug(`${method} /${config.url}`, config.params)
 
       const { data } = await this.rest.request(config)
 
