@@ -1,6 +1,5 @@
 import { Neis } from '../src'
-import { EleMidSchool, HighSchool, School } from '../src/structures/school'
-import { EleMidSchoolInfo, HighSchoolInfo } from '../src/types'
+import { School } from '../src/structures/school'
 import { Logger } from 'tslog'
 
 const logger = new Logger()
