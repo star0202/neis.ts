@@ -1,6 +1,4 @@
-import { Neis } from '../src'
-import { School } from '../src/structures/school'
-import { MealInfo } from '../src/types'
+import { MealInfo, Neis, School } from '../src'
 import { Logger } from 'tslog'
 
 const logger = new Logger()
