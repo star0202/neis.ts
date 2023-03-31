@@ -1,5 +1,4 @@
-/** 초중학교 기본 정보 인터페이스 */
-export interface EleMidSchoolInfo {
+interface BaseInfo {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 시도교육청명 */
@@ -8,6 +7,10 @@ export interface EleMidSchoolInfo {
   readonly SD_SCHUL_CODE: string
   /** 학교명 */
   readonly SCHUL_NM: string
+}
+
+/** 초중학교 기본 정보 인터페이스 */
+export interface EleMidSchoolInfo extends BaseInfo {
   /** 영문학교명 */
   readonly ENG_SCHUL_NM: string
   /** 학교종류명 */
@@ -64,15 +67,7 @@ export interface HighSchoolInfo extends EleMidSchoolInfo {
 export type SchoolInfo = EleMidSchoolInfo | HighSchoolInfo
 
 /** 급식식단정보 인터페이스 */
-export interface MealServiceDietInfo {
-  /** 시도교육청코드 */
-  readonly ATPT_OFCDC_SC_CODE: string
-  /** 시도교육청명 */
-  readonly ATPT_OFCDC_SC_NM: string
-  /** 표준학교코드 */
-  readonly SD_SCHUL_CODE: string
-  /** 학교명 */
-  readonly SCHUL_NM: string
+export interface MealInfo extends BaseInfo {
   /** 식사코드 */
   readonly MMEAL_SC_CODE: string
   /** 식사명 */

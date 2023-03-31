@@ -1,9 +1,7 @@
 import { NeisRequest } from '../http'
-import { EleMidSchoolInfo, HighSchoolInfo, MealServiceDietInfo } from '../types'
+import { EleMidSchoolInfo, HighSchoolInfo, MealInfo } from '../types'
 
-/**
- * 초중학교 정보를 담는 클래스입니다.
- */
+/** 초중학교 정보를 담는 클래스입니다. */
 export class EleMidSchool implements EleMidSchoolInfo {
   ATPT_OFCDC_SC_CODE: string
   ATPT_OFCDC_SC_NM: string
@@ -61,9 +59,7 @@ export class EleMidSchool implements EleMidSchoolInfo {
     this.#neis = neis
   }
 
-  async getMeal(
-    date: string
-  ): Promise<MealServiceDietInfo | MealServiceDietInfo[]> {
+  async getMeal(date: string): Promise<MealInfo | MealInfo[]> {
     const data = await this.#neis.mealServiceDietInfoRaw(
       this.ATPT_OFCDC_SC_CODE,
       this.SD_SCHUL_CODE,
@@ -76,12 +72,9 @@ export class EleMidSchool implements EleMidSchoolInfo {
   }
 }
 
-/**
- * 고등학교 정보를 담는 클래스입니다.
- */
-export class HighSchool extends EleMidSchool {
-  /** 특수목적고등학교계열명 */
-  readonly HS_SC_NM: string
+/** 고등학교 정보를 담는 클래스입니다. */
+export class HighSchool extends EleMidSchool implements HighSchoolInfo {
+  HS_SC_NM: string
 
   constructor(neis: NeisRequest, info: HighSchoolInfo) {
     super(neis, info)
