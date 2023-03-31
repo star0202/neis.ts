@@ -1,5 +1,6 @@
 import { NeisRequest } from './http'
-import { MealServiceDietInfo, SchoolInfo } from './types'
+import { EleMidSchool, HighSchool, School } from './structures/school'
+import { EleMidSchoolInfo, HighSchoolInfo } from './types'
 import { Logger } from 'tslog'
 
 export class Neis extends NeisRequest {
@@ -13,33 +14,64 @@ export class Neis extends NeisRequest {
     super({ Type: 'json', pIndex: 1, pSize: 10, ...config })
   }
 
-  async schoolInfo(
+  async getSchool(
     ATPT_OFCDC_SC_CODE?: string,
     SD_SCHUL_CODE?: string
-  ): Promise<SchoolInfo[]> {
-    const data = await this.request<SchoolInfo>('GET', 'schoolInfo', {
-      ATPT_OFCDC_SC_CODE,
-      SD_SCHUL_CODE,
-    })
+  ): Promise<School | School[]> {
+    const data = await this.schoolInfoRaw(ATPT_OFCDC_SC_CODE, SD_SCHUL_CODE)
 
-    return data
+    const schools: School[] = []
+    for await (const item of data) {
+      if (item.SCHUL_KND_SC_NM === '초등학교') {
+        schools.push(new EleMidSchool(this, item as EleMidSchoolInfo))
+      } else if (item.SCHUL_KND_SC_NM === '중학교') {
+        schools.push(new EleMidSchool(this, item as EleMidSchoolInfo))
+      } else if (item.SCHUL_KND_SC_NM === '고등학교') {
+        schools.push(new HighSchool(this, item as HighSchoolInfo))
+      }
+    }
+
+    if (schools.length === 1) return schools[0]
+
+    return schools
   }
 
-  async mealServiceDietInfo(
+  async getEleMidSchool(
     ATPT_OFCDC_SC_CODE?: string,
-    SD_SCHUL_CODE?: string,
-    MLSV_YMD?: string
-  ): Promise<MealServiceDietInfo[]> {
-    const data = await this.request<MealServiceDietInfo>(
-      'GET',
-      'mealServiceDietInfo',
-      {
-        ATPT_OFCDC_SC_CODE,
-        SD_SCHUL_CODE,
-        MLSV_YMD,
-      }
-    )
+    SD_SCHUL_CODE?: string
+  ): Promise<EleMidSchool | EleMidSchool[]> {
+    const data = await this.schoolInfoRaw(ATPT_OFCDC_SC_CODE, SD_SCHUL_CODE)
 
-    return data
+    const schools: EleMidSchool[] = []
+    for await (const item of data) {
+      if (
+        item.SCHUL_KND_SC_NM === '초등학교' ||
+        item.SCHUL_KND_SC_NM === '중학교'
+      ) {
+        schools.push(new EleMidSchool(this, item as EleMidSchoolInfo))
+      }
+    }
+
+    if (schools.length === 1) return schools[0]
+
+    return schools
+  }
+
+  async getHighSchool(
+    ATPT_OFCDC_SC_CODE?: string,
+    SD_SCHUL_CODE?: string
+  ): Promise<HighSchool | HighSchool[]> {
+    const data = await this.schoolInfoRaw(ATPT_OFCDC_SC_CODE, SD_SCHUL_CODE)
+
+    const schools: HighSchool[] = []
+    for await (const item of data) {
+      if (item.SCHUL_KND_SC_NM === '고등학교') {
+        schools.push(new HighSchool(this, item as HighSchoolInfo))
+      }
+    }
+
+    if (schools.length === 1) return schools[0]
+
+    return schools
   }
 }

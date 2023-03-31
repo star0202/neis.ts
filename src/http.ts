@@ -1,3 +1,4 @@
+import { MealServiceDietInfo, SchoolInfo } from './types'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import { Logger } from 'tslog'
 
@@ -23,7 +24,7 @@ export class NeisRequest {
     this.logger = config.logger
   }
 
-  protected async request<T>(
+  private async request<T>(
     method: string,
     endpoint: string,
     params: object
@@ -54,5 +55,35 @@ export class NeisRequest {
 
       throw error
     }
+  }
+
+  async schoolInfoRaw(
+    ATPT_OFCDC_SC_CODE?: string,
+    SD_SCHUL_CODE?: string
+  ): Promise<SchoolInfo[]> {
+    const data = await this.request<SchoolInfo>('GET', 'schoolInfo', {
+      ATPT_OFCDC_SC_CODE,
+      SD_SCHUL_CODE,
+    })
+
+    return data
+  }
+
+  async mealServiceDietInfoRaw(
+    ATPT_OFCDC_SC_CODE: string,
+    SD_SCHUL_CODE: string,
+    MLSV_YMD: string
+  ): Promise<MealServiceDietInfo[]> {
+    const data = await this.request<MealServiceDietInfo>(
+      'GET',
+      'mealServiceDietInfo',
+      {
+        ATPT_OFCDC_SC_CODE,
+        SD_SCHUL_CODE,
+        MLSV_YMD,
+      }
+    )
+
+    return data
   }
 }
