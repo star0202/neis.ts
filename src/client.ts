@@ -1,6 +1,5 @@
 import { NeisRequest } from './http'
-import { EleMidSchool, HighSchool, School } from './structures/school'
-import { EleMidSchoolInfo, HighSchoolInfo } from './types'
+import { School } from './structures/school'
 import { Logger } from 'tslog'
 
 export class Neis extends NeisRequest {
@@ -22,13 +21,7 @@ export class Neis extends NeisRequest {
 
     const schools: School[] = []
     for await (const item of data) {
-      if (item.SCHUL_KND_SC_NM === '초등학교') {
-        schools.push(new EleMidSchool(this, item as EleMidSchoolInfo))
-      } else if (item.SCHUL_KND_SC_NM === '중학교') {
-        schools.push(new EleMidSchool(this, item as EleMidSchoolInfo))
-      } else if (item.SCHUL_KND_SC_NM === '고등학교') {
-        schools.push(new HighSchool(this, item as HighSchoolInfo))
-      }
+      schools.push(new School(this, item))
     }
 
     if (schools.length === 1) return schools[0]

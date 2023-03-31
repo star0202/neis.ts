@@ -1,8 +1,6 @@
-import { MealInfo, SchoolInfo } from './types'
+import { MealServiceDietInfo, SchoolInfo } from './types'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import { Logger } from 'tslog'
-
-type MealServiceDietInfo = MealInfo
 
 export class NeisRequest {
   private readonly rest: AxiosInstance

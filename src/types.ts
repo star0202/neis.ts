@@ -9,8 +9,10 @@ interface BaseInfo {
   readonly SCHUL_NM: string
 }
 
-/** 초중학교 기본 정보 인터페이스 */
-export interface EleMidSchoolInfo extends BaseInfo {
+/**
+ * 학교 기본 정보
+ */
+export interface SchoolInfo extends BaseInfo {
   /** 영문학교명 */
   readonly ENG_SCHUL_NM: string
   /** 학교종류명 */
@@ -35,6 +37,8 @@ export interface EleMidSchoolInfo extends BaseInfo {
   readonly COEDU_SC_NM: string
   /** 팩스번호 */
   readonly ORG_FAXNO: string
+  /** 특수목적고등학교계열명 */
+  readonly HS_SC_NM: string | null
   /** 산업체특별학급존재여부 */
   readonly INDST_SPECL_CCCCL_EXST_YN: string
   /** 고등학교일반실업구분명 */
@@ -52,19 +56,6 @@ export interface EleMidSchoolInfo extends BaseInfo {
   /** 수정일 */
   readonly LOAD_DTM: string
 }
-
-/**
- * 고등학교 기본 정보 인터페이스
- */
-export interface HighSchoolInfo extends EleMidSchoolInfo {
-  /** 특수목적고등학교계열명 */
-  readonly HS_SC_NM: string
-}
-
-/**
- * 학교 기본 정보
- */
-export type SchoolInfo = EleMidSchoolInfo | HighSchoolInfo
 
 /** 급식식단정보 인터페이스 */
 export interface MealInfo extends BaseInfo {
@@ -89,3 +80,5 @@ export interface MealInfo extends BaseInfo {
   /** 급식종료일자 */
   readonly MLSV_TO_YMD: string
 }
+
+export type MealServiceDietInfo = MealInfo

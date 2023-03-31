@@ -1,8 +1,8 @@
 import { NeisRequest } from '../http'
-import { EleMidSchoolInfo, HighSchoolInfo, MealInfo } from '../types'
+import { MealInfo, SchoolInfo } from '../types'
 
 /** 초중학교 정보를 담는 클래스입니다. */
-export class EleMidSchool implements EleMidSchoolInfo {
+export class School implements SchoolInfo {
   ATPT_OFCDC_SC_CODE: string
   ATPT_OFCDC_SC_NM: string
   SD_SCHUL_CODE: string
@@ -19,6 +19,7 @@ export class EleMidSchool implements EleMidSchoolInfo {
   HMPG_ADRES: string
   COEDU_SC_NM: string
   ORG_FAXNO: string
+  HS_SC_NM: string | null
   INDST_SPECL_CCCCL_EXST_YN: string
   HS_GNRL_BUSNS_SC_NM: string
   SPCLY_PURPS_HS_ORD_NM: string | null
@@ -30,7 +31,7 @@ export class EleMidSchool implements EleMidSchoolInfo {
 
   #neis: NeisRequest
 
-  constructor(neis: NeisRequest, info: EleMidSchoolInfo) {
+  constructor(neis: NeisRequest, info: SchoolInfo) {
     this.ATPT_OFCDC_SC_CODE = info.ATPT_OFCDC_SC_CODE
     this.ATPT_OFCDC_SC_NM = info.ATPT_OFCDC_SC_NM
     this.SD_SCHUL_CODE = info.SD_SCHUL_CODE
@@ -47,6 +48,7 @@ export class EleMidSchool implements EleMidSchoolInfo {
     this.HMPG_ADRES = info.HMPG_ADRES
     this.COEDU_SC_NM = info.COEDU_SC_NM
     this.ORG_FAXNO = info.ORG_FAXNO
+    this.HS_SC_NM = info.HS_SC_NM || null
     this.INDST_SPECL_CCCCL_EXST_YN = info.INDST_SPECL_CCCCL_EXST_YN
     this.HS_GNRL_BUSNS_SC_NM = info.HS_GNRL_BUSNS_SC_NM
     this.SPCLY_PURPS_HS_ORD_NM = info.SPCLY_PURPS_HS_ORD_NM || null
@@ -71,15 +73,3 @@ export class EleMidSchool implements EleMidSchoolInfo {
     return data
   }
 }
-
-/** 고등학교 정보를 담는 클래스입니다. */
-export class HighSchool extends EleMidSchool implements HighSchoolInfo {
-  HS_SC_NM: string
-
-  constructor(neis: NeisRequest, info: HighSchoolInfo) {
-    super(neis, info)
-    this.HS_SC_NM = info.HS_SC_NM
-  }
-}
-
-export type School = EleMidSchool | HighSchool
