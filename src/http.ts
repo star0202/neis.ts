@@ -22,6 +22,8 @@ export class NeisRequest {
     })
 
     this.logger = config.logger
+
+    if (!config.KEY) this.logger?.warn('No API key provided, using sample key')
   }
 
   private async request<T>(
