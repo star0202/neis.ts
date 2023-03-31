@@ -21,7 +21,7 @@ describe('Meal', () => {
     expect(data).toMatchObject<MealInfo[]>(data)
   })
 
-  it('should return MealServiceDietInfo', async () => {
+  it('should return MealInfo', async () => {
     const school = (await neis.getSchool('B10', '7091455')) as School
 
     const data = (await school.getMeal('20230331')) as MealInfo

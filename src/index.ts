@@ -1,3 +1,3 @@
 export * from './client'
 export * from './structures'
-export * from './types'
+export { SchoolInfo, MealInfo } from './types'
