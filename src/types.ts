@@ -9,9 +9,7 @@ interface BaseInfo {
   readonly SCHUL_NM: string
 }
 
-/**
- * 학교 기본 정보
- */
+/** 학교 기본 정보 */
 export interface SchoolInfo extends BaseInfo {
   /** 영문학교명 */
   readonly ENG_SCHUL_NM: string
