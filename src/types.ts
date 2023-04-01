@@ -9,7 +9,6 @@ interface BaseInfo {
   readonly SCHUL_NM: string
 }
 
-/** 학교 기본 정보 */
 export interface SchoolInfo extends BaseInfo {
   /** 영문학교명 */
   readonly ENG_SCHUL_NM: string
@@ -55,7 +54,6 @@ export interface SchoolInfo extends BaseInfo {
   readonly LOAD_DTM: string
 }
 
-/** 급식식단정보 인터페이스 */
 export interface MealInfo extends BaseInfo {
   /** 식사코드 */
   readonly MMEAL_SC_CODE: string
