@@ -1,4 +1,10 @@
-import { MealServiceDietInfo, SchoolInfo } from './types'
+import {
+  MealInfo,
+  MealRequestConfig,
+  NeisConfig,
+  SchoolInfo,
+  SchoolRequestConfig,
+} from './types'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import { Logger } from 'tslog'
 
@@ -9,12 +15,10 @@ export class NeisRequest {
   private readonly logger?: Logger<unknown>
 
   constructor(
-    private readonly config: {
-      KEY?: string
+    private readonly config: NeisConfig & {
       Type: 'json' | 'xml'
       pIndex: number
       pSize: number
-      logger?: Logger<unknown>
     }
   ) {
     this.rest = axios.create({
@@ -48,8 +52,10 @@ export class NeisRequest {
 
       const { data } = await this.rest.request(config)
 
-      if (data.RESULT)
+      if (data.RESULT) {
+        this.logger?.error(`${data.RESULT.CODE} ${data.RESULT.MESSAGE}`)
         throw new Error(`${data.RESULT.CODE} ${data.RESULT.MESSAGE}`)
+      }
 
       return Object.values((Object.values(data) as object[][])[0][1])[0] as T[]
     } catch (error) {
@@ -59,33 +65,16 @@ export class NeisRequest {
     }
   }
 
-  async schoolInfoRaw(
-    ATPT_OFCDC_SC_CODE?: string,
-    SD_SCHUL_CODE?: string
-  ): Promise<SchoolInfo[]> {
-    const data = await this.request<SchoolInfo>('GET', 'schoolInfo', {
-      ATPT_OFCDC_SC_CODE,
-      SD_SCHUL_CODE,
-    })
-
-    return data
+  async schoolInfoRaw(config: SchoolRequestConfig): Promise<SchoolInfo[]> {
+    return await this.request<SchoolInfo>('GET', 'schoolInfo', config)
   }
 
   async mealServiceDietInfoRaw(
-    ATPT_OFCDC_SC_CODE: string,
-    SD_SCHUL_CODE: string,
-    MLSV_YMD: string
-  ): Promise<MealServiceDietInfo[]> {
-    const data = await this.request<MealServiceDietInfo>(
-      'GET',
-      'mealServiceDietInfo',
-      {
-        ATPT_OFCDC_SC_CODE,
-        SD_SCHUL_CODE,
-        MLSV_YMD,
-      }
-    )
-
-    return data
+    config: MealRequestConfig & {
+      ATPT_OFCDC_SC_CODE: string
+      SD_SCHUL_CODE: string
+    }
+  ): Promise<MealInfo[]> {
+    return await this.request<MealInfo>('GET', 'mealServiceDietInfo', config)
   }
 }

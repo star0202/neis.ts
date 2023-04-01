@@ -1,23 +1,14 @@
 import { NeisRequest } from './http'
 import { School } from './structures/school'
-import { Logger } from 'tslog'
+import { NeisConfig, SchoolRequestConfig } from './types'
 
 export class Neis extends NeisRequest {
-  constructor(config: {
-    KEY?: string
-    Type?: 'json' | 'xml'
-    pIndex?: number
-    pSize?: number
-    logger?: Logger<unknown>
-  }) {
+  constructor(config: NeisConfig) {
     super({ Type: 'json', pIndex: 1, pSize: 10, ...config })
   }
 
-  async getSchool(
-    ATPT_OFCDC_SC_CODE?: string,
-    SD_SCHUL_CODE?: string
-  ): Promise<School | School[]> {
-    const data = await this.schoolInfoRaw(ATPT_OFCDC_SC_CODE, SD_SCHUL_CODE)
+  async getSchool(config: SchoolRequestConfig): Promise<School | School[]> {
+    const data = await this.schoolInfoRaw(config)
 
     const schools: School[] = []
     for await (const item of data) {

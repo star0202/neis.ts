@@ -9,11 +9,13 @@ const neis = new Neis({
 
 describe('Meal', () => {
   it('should return MealInfo[]', async () => {
-    const schools = (await neis.getSchool('B10')) as School[]
+    const schools = (await neis.getSchool({
+      ATPT_OFCDC_SC_CODE: 'B10',
+    })) as School[]
 
     const data: MealInfo[] = []
     for await (const school of schools) {
-      data.push((await school.getMeal('20230331')) as MealInfo)
+      data.push((await school.getMeal({ MLSV_YMD: '20230331' })) as MealInfo)
     }
 
     logger.info(data)
@@ -22,9 +24,12 @@ describe('Meal', () => {
   })
 
   it('should return MealInfo', async () => {
-    const school = (await neis.getSchool('B10', '7091455')) as School
+    const school = (await neis.getSchool({
+      ATPT_OFCDC_SC_CODE: 'B10',
+      SD_SCHUL_CODE: '7091455',
+    })) as School
 
-    const data = (await school.getMeal('20230331')) as MealInfo
+    const data = (await school.getMeal({ MLSV_YMD: '20230331' })) as MealInfo
     logger.info(data)
 
     expect(data).toMatchObject<MealInfo>(data)

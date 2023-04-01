@@ -1,3 +1,44 @@
+import { Logger } from 'tslog'
+
+export interface NeisConfig {
+  /** NEIS API KEY */
+  readonly KEY?: string
+  /** 호출 문서(xml, json) */
+  readonly Type?: 'json' | 'xml'
+  /** 페이지 번호 */
+  readonly pIndex?: number
+  /** 페이지 당 신청 숫자 */
+  readonly pSize?: number
+  /** tslog Logger */
+  readonly logger?: Logger<unknown>
+}
+
+export interface SchoolRequestConfig {
+  /** 시도교육청코드 */
+  readonly ATPT_OFCDC_SC_CODE?: string
+  /** 표준학교코드 */
+  readonly SD_SCHUL_CODE?: string
+  /** 학교명 */
+  readonly SCHUL_NM?: string
+  /** 학교종류명 */
+  readonly SCHUL_KND_SC_NM?: string
+  /** 소재지명 */
+  readonly LCTN_SC_NM?: string
+  /** 설립명 */
+  readonly FOND_SC_NM?: string
+}
+
+export interface MealRequestConfig {
+  /** 식사코드 */
+  readonly MMEAL_SC_CODE?: string
+  /** 급식일자 */
+  readonly MLSV_YMD?: string
+  /** 급식시작일자 */
+  readonly MLSV_FROM_YMD?: string
+  /** 급식종료일자 */
+  readonly MLSV_TO_YMD?: string
+}
+
 interface BaseInfo {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
@@ -76,5 +117,3 @@ export interface MealInfo extends BaseInfo {
   /** 급식종료일자 */
   readonly MLSV_TO_YMD: string
 }
-
-export type MealServiceDietInfo = MealInfo

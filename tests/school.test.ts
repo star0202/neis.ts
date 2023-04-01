@@ -9,14 +9,19 @@ const neis = new Neis({
 
 describe('School', () => {
   it('should return School[]', async () => {
-    const data = (await neis.getSchool('B10')) as School[]
+    const data = (await neis.getSchool({
+      ATPT_OFCDC_SC_CODE: 'B10',
+    })) as School[]
     logger.info(data)
 
     expect(data).toMatchObject<School[]>(data)
   })
 
   it('should return School', async () => {
-    const data = (await neis.getSchool('B10', '7091455')) as School
+    const data = (await neis.getSchool({
+      ATPT_OFCDC_SC_CODE: 'B10',
+      SD_SCHUL_CODE: '7091455',
+    })) as School
     logger.info(data)
 
     expect(data).toMatchObject<School>(data)
