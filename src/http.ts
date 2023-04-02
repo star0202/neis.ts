@@ -38,7 +38,21 @@ export class NeisRequest {
 
     this.logger = config.logger
 
-    if (!config.KEY) this.logger?.warn('No API key provided, using sample key')
+    if (!this.KEY) {
+      this.logger?.warn('No key provided, using a sample key.')
+
+      if (this.pIndex !== 1) {
+        this.logger?.warn('Using a sample key, pIndex is fixed to 1.')
+
+        this.pIndex = 1
+      }
+
+      if (this.pSize !== 5) {
+        this.logger?.warn('Using a sample key, pSize is fixed to 5.')
+
+        this.pSize = 5
+      }
+    }
   }
 
   private async request<T>(
