@@ -61,14 +61,12 @@ export class School implements SchoolInfo {
     this.#neis = neis
   }
 
-  async getMeal(config: MealRequestConfig): Promise<MealInfo | MealInfo[]> {
+  async getMeal(config: MealRequestConfig): Promise<MealInfo[]> {
     const data = await this.#neis.mealServiceDietInfoRaw({
       ATPT_OFCDC_SC_CODE: this.ATPT_OFCDC_SC_CODE,
       SD_SCHUL_CODE: this.SD_SCHUL_CODE,
       ...config,
     })
-
-    if (data.length === 1) return data[0]
 
     return data
   }
