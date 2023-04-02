@@ -42,13 +42,17 @@ export class NeisRequest {
       this.logger?.warn('No key provided, using a sample key.')
 
       if (this.pIndex !== 1) {
-        this.logger?.warn('Using a sample key, pIndex is fixed to 1.')
+        this.logger?.warn(
+          `Using a sample key, pIndex is fixed to 1 from ${this.pIndex}.`
+        )
 
         this.pIndex = 1
       }
 
       if (this.pSize !== 5) {
-        this.logger?.warn('Using a sample key, pSize is fixed to 5.')
+        this.logger?.warn(
+          `Using a sample key, pSize is fixed to 5 from ${this.pSize}.`
+        )
 
         this.pSize = 5
       }
