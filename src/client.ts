@@ -8,13 +8,14 @@ export class Neis extends NeisRequest {
   }
 
   async getSchool(config: SchoolRequestConfig): Promise<School[]> {
-    const data = await this.schoolInfoRaw(config)
+    return await this.schoolInfoRaw(config).then((data) =>
+      data.map((item) => new School(this, item))
+    )
+  }
 
-    const schools: School[] = []
-    for await (const item of data) {
-      schools.push(new School(this, item))
-    }
-
-    return schools
+  async getSchoolOne(config: SchoolRequestConfig): Promise<School> {
+    return await this.schoolInfoRaw(config).then(
+      (data) => new School(this, data[0])
+    )
   }
 }
