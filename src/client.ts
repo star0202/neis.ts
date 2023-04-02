@@ -4,7 +4,7 @@ import { NeisConfig, SchoolRequestConfig } from './types'
 
 export class Neis extends NeisRequest {
   constructor(config: NeisConfig) {
-    super({ Type: 'json', pIndex: 1, pSize: 10, ...config })
+    super({ Type: 'json', pIndex: 1, pSize: 100, ...config })
   }
 
   async getSchool(config: SchoolRequestConfig): Promise<School[]> {
