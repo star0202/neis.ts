@@ -54,6 +54,7 @@ export class NeisRequest {
 
       if (data.RESULT) {
         this.logger?.error(`${data.RESULT.CODE} ${data.RESULT.MESSAGE}`)
+
         throw new Error(`${data.RESULT.CODE} ${data.RESULT.MESSAGE}`)
       }
 
