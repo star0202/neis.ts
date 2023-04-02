@@ -60,6 +60,11 @@ export class NeisRequest {
   }
 
   private async request<T>(
+    method: 'GET',
+    endpoint: string,
+    params: RequestParam
+  ): Promise<T[]>
+  private async request<T>(
     method: string,
     endpoint: string,
     params: RequestParam
