@@ -2,6 +2,7 @@ import {
   MealInfo,
   MealRequestConfig,
   NeisConfig,
+  RequestConfig,
   SchoolInfo,
   SchoolRequestConfig,
 } from './types'
@@ -14,8 +15,13 @@ export class NeisRequest {
 
   private readonly logger?: Logger<unknown>
 
+  private readonly KEY?: string
+  private readonly Type: 'json' | 'xml'
+  private readonly pIndex: number
+  private readonly pSize: number
+
   constructor(
-    private readonly config: NeisConfig & {
+    config: NeisConfig & {
       Type: 'json' | 'xml'
       pIndex: number
       pSize: number
@@ -25,6 +31,11 @@ export class NeisRequest {
       baseURL: this.baseURL,
     })
 
+    this.KEY = config.KEY
+    this.Type = config.Type
+    this.pIndex = config.pIndex
+    this.pSize = config.pSize
+
     this.logger = config.logger
 
     if (!config.KEY) this.logger?.warn('No API key provided, using sample key')
@@ -33,16 +44,16 @@ export class NeisRequest {
   private async request<T>(
     method: string,
     endpoint: string,
-    params: object
+    params: RequestConfig
   ): Promise<T[]> {
     const config: AxiosRequestConfig = {
       method: method,
       url: endpoint,
       params: {
-        KEY: this.config.KEY,
-        Type: this.config.Type,
-        pIndex: this.config.pIndex,
-        pSize: this.config.pSize,
+        KEY: this.KEY,
+        Type: this.Type,
+        pIndex: this.pIndex,
+        pSize: this.pSize,
         ...params,
       },
     }
@@ -60,7 +71,7 @@ export class NeisRequest {
 
       return Object.values((Object.values(data) as object[][])[0][1])[0] as T[]
     } catch (error) {
-      this.config.logger?.error(error)
+      this.logger?.error(error)
 
       throw error
     }

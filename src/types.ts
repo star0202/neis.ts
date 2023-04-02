@@ -39,6 +39,8 @@ export interface MealRequestConfig {
   readonly MLSV_TO_YMD?: string
 }
 
+export type RequestConfig = SchoolRequestConfig | MealRequestConfig
+
 interface BaseInfo {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
