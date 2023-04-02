@@ -1,10 +1,10 @@
 import {
   MealInfo,
-  MealRequestConfig,
+  MealRequestParam,
   NeisConfig,
-  RequestConfig,
+  RequestParam,
   SchoolInfo,
-  SchoolRequestConfig,
+  SchoolRequestParam,
 } from './types'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import { Logger } from 'tslog'
@@ -62,7 +62,7 @@ export class NeisRequest {
   private async request<T>(
     method: string,
     endpoint: string,
-    params: RequestConfig
+    params: RequestParam
   ): Promise<T[]> {
     const config: AxiosRequestConfig = {
       method: method,
@@ -95,16 +95,16 @@ export class NeisRequest {
     }
   }
 
-  async schoolInfoRaw(config: SchoolRequestConfig): Promise<SchoolInfo[]> {
-    return await this.request<SchoolInfo>('GET', 'schoolInfo', config)
+  async schoolInfoRaw(params: SchoolRequestParam): Promise<SchoolInfo[]> {
+    return await this.request<SchoolInfo>('GET', 'schoolInfo', params)
   }
 
   async mealServiceDietInfoRaw(
-    config: MealRequestConfig & {
+    params: MealRequestParam & {
       ATPT_OFCDC_SC_CODE: string
       SD_SCHUL_CODE: string
     }
   ): Promise<MealInfo[]> {
-    return await this.request<MealInfo>('GET', 'mealServiceDietInfo', config)
+    return await this.request<MealInfo>('GET', 'mealServiceDietInfo', params)
   }
 }

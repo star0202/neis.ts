@@ -13,7 +13,7 @@ export interface NeisConfig {
   readonly logger?: Logger<unknown>
 }
 
-export interface SchoolRequestConfig {
+export interface SchoolRequestParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE?: string
   /** 표준학교코드 */
@@ -28,7 +28,7 @@ export interface SchoolRequestConfig {
   readonly FOND_SC_NM?: string
 }
 
-export interface MealRequestConfig {
+export interface MealRequestParam {
   /** 식사코드 */
   readonly MMEAL_SC_CODE?: string
   /** 급식일자 */
@@ -39,7 +39,7 @@ export interface MealRequestConfig {
   readonly MLSV_TO_YMD?: string
 }
 
-export type RequestConfig = SchoolRequestConfig | MealRequestConfig
+export type RequestParam = SchoolRequestParam | MealRequestParam
 
 interface BaseInfo {
   /** 시도교육청코드 */

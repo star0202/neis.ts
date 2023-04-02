@@ -1,5 +1,5 @@
 import { NeisRequest } from '../http'
-import { MealInfo, MealRequestConfig, SchoolInfo } from '../types'
+import { MealInfo, MealRequestParam, SchoolInfo } from '../types'
 
 /** 초중학교 정보를 담는 클래스입니다. */
 export class School implements SchoolInfo {
@@ -61,20 +61,20 @@ export class School implements SchoolInfo {
     this.#neis = neis
   }
 
-  async getMeal(config: MealRequestConfig): Promise<MealInfo[]> {
+  async getMeal(params: MealRequestParam): Promise<MealInfo[]> {
     return await this.#neis.mealServiceDietInfoRaw({
       ATPT_OFCDC_SC_CODE: this.ATPT_OFCDC_SC_CODE,
       SD_SCHUL_CODE: this.SD_SCHUL_CODE,
-      ...config,
+      ...params,
     })
   }
 
-  async getMealOne(config: MealRequestConfig): Promise<MealInfo> {
+  async getMealOne(params: MealRequestParam): Promise<MealInfo> {
     return await this.#neis
       .mealServiceDietInfoRaw({
         ATPT_OFCDC_SC_CODE: this.ATPT_OFCDC_SC_CODE,
         SD_SCHUL_CODE: this.SD_SCHUL_CODE,
-        ...config,
+        ...params,
       })
       .then((data) => data[0])
   }
