@@ -1,7 +1,7 @@
 import { NeisRequest } from '../http'
 import { MealInfo, MealRequestParam, SchoolInfo } from '../types'
 
-/** 초중학교 정보를 담는 클래스입니다. */
+/** 학교 정보를 담는 클래스입니다. */
 export class School implements SchoolInfo {
   ATPT_OFCDC_SC_CODE: string
   ATPT_OFCDC_SC_NM: string
