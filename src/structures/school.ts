@@ -70,12 +70,6 @@ export class School implements SchoolInfo {
   }
 
   async getMealOne(params: MealRequestParam): Promise<MealInfo> {
-    return await this.#neis
-      .mealServiceDietInfoRaw({
-        ATPT_OFCDC_SC_CODE: this.ATPT_OFCDC_SC_CODE,
-        SD_SCHUL_CODE: this.SD_SCHUL_CODE,
-        ...params,
-      })
-      .then((data) => data[0])
+    return await this.getMeal(params).then((data) => data[0])
   }
 }
