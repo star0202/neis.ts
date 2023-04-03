@@ -68,7 +68,7 @@ export class NeisRequest {
     method: string,
     endpoint: string,
     params: RequestParam
-  ): Promise<T[]> {
+  ): Promise<T[] | void> {
     const config: AxiosRequestConfig = {
       method: method,
       url: endpoint,
