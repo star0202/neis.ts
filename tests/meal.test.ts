@@ -1,11 +1,5 @@
-import { MealInfo, Neis } from '../src'
-import { Logger } from 'tslog'
-
-const logger = new Logger()
-
-const neis = new Neis({
-  logger: logger,
-})
+import type { MealInfo } from '../src/types'
+import { logger, neis } from './index'
 
 describe('Meal', () => {
   it('should return MealInfo[]', async () => {

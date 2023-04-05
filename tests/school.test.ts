@@ -1,11 +1,5 @@
-import { Neis, School } from '../src'
-import { Logger } from 'tslog'
-
-const logger = new Logger()
-
-const neis = new Neis({
-  logger: logger,
-})
+import { logger, neis } from '.'
+import type { School } from '../src'
 
 describe('School', () => {
   it('should return School[]', async () => {
