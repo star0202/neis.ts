@@ -3,6 +3,8 @@ import type {
   MealRequestParam,
   NeisConfig,
   RequestParam,
+  ScheduleInfo,
+  ScheduleRequestParam,
   SchoolInfo,
   SchoolRequestParam,
 } from './types'
@@ -112,5 +114,14 @@ export class NeisRequest {
     }
   ): Promise<MealInfo[]> {
     return await this.request<MealInfo>('GET', 'mealServiceDietInfo', params)
+  }
+
+  async SchoolScheduleRaw(
+    params: ScheduleRequestParam & {
+      ATPT_OFCDC_SC_CODE: string
+      SD_SCHUL_CODE: string
+    }
+  ): Promise<ScheduleInfo[]> {
+    return await this.request<ScheduleInfo>('GET', 'SchoolSchedule', params)
   }
 }

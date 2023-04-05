@@ -1,5 +1,11 @@
 import type { NeisRequest } from '../http'
-import type { MealInfo, MealRequestParam, SchoolInfo } from '../types'
+import type {
+  MealInfo,
+  MealRequestParam,
+  ScheduleInfo,
+  ScheduleRequestParam,
+  SchoolInfo,
+} from '../types'
 
 /** 학교 정보를 담는 클래스입니다. */
 export class School implements SchoolInfo {
@@ -71,5 +77,17 @@ export class School implements SchoolInfo {
 
   async getMealOne(params: MealRequestParam): Promise<MealInfo> {
     return await this.getMeal(params).then((data) => data[0])
+  }
+
+  async getSchedule(params: ScheduleRequestParam): Promise<ScheduleInfo[]> {
+    return await this.#neis.SchoolScheduleRaw({
+      ATPT_OFCDC_SC_CODE: this.ATPT_OFCDC_SC_CODE,
+      SD_SCHUL_CODE: this.SD_SCHUL_CODE,
+      ...params,
+    })
+  }
+
+  async getScheduleOne(params: ScheduleRequestParam): Promise<ScheduleInfo> {
+    return await this.getSchedule(params).then((data) => data[0])
   }
 }
