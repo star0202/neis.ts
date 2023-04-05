@@ -3,7 +3,7 @@ import { School } from './structures/school'
 import type { NeisConfig, SchoolRequestParam } from './types'
 
 export class Neis extends NeisRequest {
-  constructor(config: NeisConfig) {
+  constructor(config?: NeisConfig) {
     super({ Type: 'json', pIndex: 1, pSize: 100, ...config })
   }
 
