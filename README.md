@@ -6,6 +6,8 @@ NEIS Open API를 쉽게 사용하기 위한 TypeScript API Wrapper입니다.
 
 ## Installation
 
+Install from [npm](https://www.npmjs.com/package/neis.ts)
+
 ```bash
 npm install neis.ts
 # or
