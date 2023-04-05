@@ -1,4 +1,4 @@
-import { Logger } from 'tslog'
+import type { Logger } from 'tslog'
 
 export interface NeisConfig {
   /** NEIS API KEY */

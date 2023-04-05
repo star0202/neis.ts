@@ -1,4 +1,4 @@
-import {
+import type {
   MealInfo,
   MealRequestParam,
   NeisConfig,
@@ -7,7 +7,7 @@ import {
   SchoolRequestParam,
 } from './types'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { Logger } from 'tslog'
+import type { Logger } from 'tslog'
 
 export class NeisRequest {
   private readonly rest: AxiosInstance

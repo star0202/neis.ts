@@ -1,5 +1,5 @@
-import { NeisRequest } from '../http'
-import { MealInfo, MealRequestParam, SchoolInfo } from '../types'
+import type { NeisRequest } from '../http'
+import type { MealInfo, MealRequestParam, SchoolInfo } from '../types'
 
 /** 학교 정보를 담는 클래스입니다. */
 export class School implements SchoolInfo {
