@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout branch
         uses: actions/checkout@v3
 
-      - name: Setup node
+      - name: Setup node.js 19
         uses: actions/setup-node@v3
         with:
           node-version: 19
 
-      - name: Enable corepack
+      - name: Enable Corepack
         run: corepack enable
 
       - name: Get pnpm store directory
@@ -34,7 +34,7 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm i --frozen-lockfile
 
       - name: Semantic release
