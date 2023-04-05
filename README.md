@@ -52,4 +52,4 @@ const neis = new Neis({
 
 ## Official API Docs by NEIS
 
-- [교육정보 공공데이터포털](https://www.data.go.kr/data/15012690/openapi.do)
+- [교육정보 공공데이터포털](https://open.neis.go.kr/portal/guide/apiIntroPage.do)
