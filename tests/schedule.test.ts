@@ -24,6 +24,7 @@ describe('Schedule', () => {
     })
 
     const data = await school.getScheduleOne({ AY_YMD: '20230301' })
+
     logger.info(data)
 
     expect(data).toMatchObject<ScheduleInfo>(data)

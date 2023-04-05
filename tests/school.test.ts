@@ -6,6 +6,7 @@ describe('School', () => {
     const data = await neis.getSchool({
       ATPT_OFCDC_SC_CODE: 'B10',
     })
+
     logger.info(data)
 
     expect(data).toMatchObject<School[]>(data)
@@ -16,6 +17,7 @@ describe('School', () => {
       ATPT_OFCDC_SC_CODE: 'B10',
       SD_SCHUL_CODE: '7091455',
     })
+
     logger.info(data)
 
     expect(data).toMatchObject<School>(data)

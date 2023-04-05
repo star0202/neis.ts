@@ -24,6 +24,7 @@ describe('Meal', () => {
     })
 
     const data = await school.getMealOne({ MLSV_YMD: '20230331' })
+
     logger.info(data)
 
     expect(data).toMatchObject<MealInfo>(data)
