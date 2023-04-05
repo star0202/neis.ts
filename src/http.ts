@@ -6,7 +6,8 @@ import type {
   SchoolInfo,
   SchoolRequestParam,
 } from './types'
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import axios from 'axios'
+import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import type { Logger } from 'tslog'
 
 export class NeisRequest {
