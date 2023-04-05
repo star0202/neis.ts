@@ -20,7 +20,7 @@ jobs:
       - name: Enable corepack
         run: corepack enable
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm i --frozen-lockfile
       - name: Semantic release
         run: pnpm run release
         env:
