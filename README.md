@@ -21,8 +21,8 @@ pnpm add neis.ts
 ## Usage
 
 ```ts
-import { Neis } from 'neis.ts';
-import { Logger } from 'tslog'; // Optional
+import { Neis } from 'neis.ts'
+import { Logger } from 'tslog' // Optional
 
 const logger = new Logger() // Optional
 const neis = new Neis({
