@@ -1,4 +1,4 @@
-import { logger, neis } from '.'
+import { neis } from '.'
 import type { Meal } from '../src'
 
 describe('Meal', () => {
@@ -12,8 +12,6 @@ describe('Meal', () => {
       data.push(await school.getMealOne({ MLSV_YMD: '20230331' }))
     }
 
-    logger.info(data)
-
     expect(data).toMatchObject<Meal[]>(data)
   })
 
@@ -24,8 +22,6 @@ describe('Meal', () => {
     })
 
     const data = await school.getMealOne({ MLSV_YMD: '20230331' })
-
-    logger.info(data)
 
     expect(data).toMatchObject<Meal>(data)
   })
@@ -45,8 +41,6 @@ describe('Meal', () => {
       nutrition: meal.getNutrition(),
       origin: meal.getOrigin(),
     }
-
-    logger.info(data)
 
     expect(data.cal).toBe(901.4)
     expect(data.dish).toMatchObject<string[]>(data.dish)
