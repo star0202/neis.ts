@@ -42,7 +42,9 @@ export class Meal implements MealInfo {
   }
 
   getDishName(): string[] {
-    return this.DDISH_NM.replace(/ {2,}.*/g, '').split('<br/>')
+    return this.DDISH_NM.split('<br/>').map((dish) =>
+      dish.replace(/ {2,}.*/g, '')
+    )
   }
 
   getOrigin(): { name: string; origin: string }[] {
