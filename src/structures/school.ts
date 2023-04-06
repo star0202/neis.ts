@@ -1,11 +1,11 @@
 import type { NeisRequest } from '../http'
 import type {
-  MealInfo,
   MealRequestParam,
   ScheduleInfo,
   ScheduleRequestParam,
   SchoolInfo,
 } from '../types'
+import { Meal } from './meal'
 
 /** 학교 정보를 담는 클래스입니다. */
 export class School implements SchoolInfo {
@@ -67,16 +67,24 @@ export class School implements SchoolInfo {
     this.#neis = neis
   }
 
-  async getMeal(params: MealRequestParam): Promise<MealInfo[]> {
-    return await this.#neis.mealServiceDietInfoRaw({
-      ATPT_OFCDC_SC_CODE: this.ATPT_OFCDC_SC_CODE,
-      SD_SCHUL_CODE: this.SD_SCHUL_CODE,
-      ...params,
-    })
+  async getMeal(params: MealRequestParam): Promise<Meal[]> {
+    return await this.#neis
+      .mealServiceDietInfoRaw({
+        ATPT_OFCDC_SC_CODE: this.ATPT_OFCDC_SC_CODE,
+        SD_SCHUL_CODE: this.SD_SCHUL_CODE,
+        ...params,
+      })
+      .then((data) => data.map((meal) => new Meal(meal)))
   }
 
-  async getMealOne(params: MealRequestParam): Promise<MealInfo> {
-    return await this.getMeal(params).then((data) => data[0])
+  async getMealOne(params: MealRequestParam): Promise<Meal> {
+    return await this.#neis
+      .mealServiceDietInfoRaw({
+        ATPT_OFCDC_SC_CODE: this.ATPT_OFCDC_SC_CODE,
+        SD_SCHUL_CODE: this.SD_SCHUL_CODE,
+        ...params,
+      })
+      .then((data) => new Meal(data[0]))
   }
 
   async getSchedule(params: ScheduleRequestParam): Promise<ScheduleInfo[]> {
