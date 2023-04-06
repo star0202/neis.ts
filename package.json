@@ -21,6 +21,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "jest": "^29.5.0",
     "prettier": "^2.8.7",
+    "rimraf": "^4.4.1",
     "semantic-release": "^21.0.1",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
@@ -43,7 +44,8 @@
     "lint": "eslint src --ignore-path .gitignore",
     "test": "jest",
     "build": "tsc",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "prepack": "rimraf dist && tsc"
   },
   "packageManager": "pnpm@7.30.0",
   "release": {

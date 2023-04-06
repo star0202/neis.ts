@@ -37,9 +37,6 @@ jobs:
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile
 
-      - name: Build
-        run: pnpm run build
-
       - name: Semantic release
         run: pnpm run release
         env:
