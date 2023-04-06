@@ -52,7 +52,7 @@
     "branches": [
       "stable",
       {
-        "name": "master",
+        "name": "dev",
         "prerelease": true
       }
     ]
