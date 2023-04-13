@@ -39,7 +39,7 @@ export class NeisRequest {
     this.pIndex = config.pIndex
     this.pSize = config.pSize
 
-    this.logger = config.logger
+    this.logger = config.logger?.getSubLogger({ name: 'HTTP' })
 
     if (!this.KEY) {
       this.logger?.warn('No key provided, using a sample key.')
