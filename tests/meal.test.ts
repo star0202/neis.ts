@@ -1,4 +1,4 @@
-import { logger, neis } from '.'
+import { neis } from '.'
 import type { MealInfo } from '../src/types'
 
 describe('Meal', () => {
@@ -12,8 +12,6 @@ describe('Meal', () => {
       data.push(await school.getMealOne({ MLSV_YMD: '20230331' }))
     }
 
-    logger.info(data)
-
     expect(data).toMatchObject<MealInfo[]>(data)
   })
 
@@ -24,8 +22,6 @@ describe('Meal', () => {
     })
 
     const data = await school.getMealOne({ MLSV_YMD: '20230331' })
-
-    logger.info(data)
 
     expect(data).toMatchObject<MealInfo>(data)
   })
