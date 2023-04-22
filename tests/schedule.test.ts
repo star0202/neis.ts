@@ -1,5 +1,5 @@
 import { neis } from '.'
-import type { ScheduleInfo } from '../src/types'
+import type { ScheduleInfo } from '../src'
 
 describe('Schedule', () => {
   it('should return ScheduleInfo[]', async () => {

@@ -1,5 +1,5 @@
 import { NeisRequest } from './http'
-import { School } from './structures/school'
+import { School } from './structures'
 import type { NeisConfig, SchoolRequestParam } from './types'
 
 export class Neis extends NeisRequest {

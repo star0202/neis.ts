@@ -1,5 +1,5 @@
 import { neis } from '.'
-import type { MealInfo } from '../src/types'
+import type { MealInfo } from '../src'
 
 describe('Meal', () => {
   it('should return MealInfo[]', async () => {
