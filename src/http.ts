@@ -8,8 +8,8 @@ import type {
   SchoolInfo,
   SchoolRequestParam,
 } from './types'
-import axios from 'axios'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
+import axios from 'axios'
 import type { Logger } from 'tslog'
 
 export class NeisRequest {
@@ -62,6 +62,28 @@ export class NeisRequest {
     }
   }
 
+  async schoolInfoRaw(params: SchoolRequestParam): Promise<SchoolInfo[]> {
+    return await this.request<SchoolInfo>('GET', 'schoolInfo', params)
+  }
+
+  async mealServiceDietInfoRaw(
+    params: MealRequestParam & {
+      ATPT_OFCDC_SC_CODE: string
+      SD_SCHUL_CODE: string
+    }
+  ): Promise<MealInfo[]> {
+    return await this.request<MealInfo>('GET', 'mealServiceDietInfo', params)
+  }
+
+  async SchoolScheduleRaw(
+    params: ScheduleRequestParam & {
+      ATPT_OFCDC_SC_CODE: string
+      SD_SCHUL_CODE: string
+    }
+  ): Promise<ScheduleInfo[]> {
+    return await this.request<ScheduleInfo>('GET', 'SchoolSchedule', params)
+  }
+
   private async request<T>(
     method: string,
     endpoint: string,
@@ -96,27 +118,5 @@ export class NeisRequest {
 
       throw error
     }
-  }
-
-  async schoolInfoRaw(params: SchoolRequestParam): Promise<SchoolInfo[]> {
-    return await this.request<SchoolInfo>('GET', 'schoolInfo', params)
-  }
-
-  async mealServiceDietInfoRaw(
-    params: MealRequestParam & {
-      ATPT_OFCDC_SC_CODE: string
-      SD_SCHUL_CODE: string
-    }
-  ): Promise<MealInfo[]> {
-    return await this.request<MealInfo>('GET', 'mealServiceDietInfo', params)
-  }
-
-  async SchoolScheduleRaw(
-    params: ScheduleRequestParam & {
-      ATPT_OFCDC_SC_CODE: string
-      SD_SCHUL_CODE: string
-    }
-  ): Promise<ScheduleInfo[]> {
-    return await this.request<ScheduleInfo>('GET', 'SchoolSchedule', params)
   }
 }
