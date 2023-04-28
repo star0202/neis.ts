@@ -13,14 +13,11 @@ export interface NeisConfig {
   readonly logger?: Logger<unknown>
 }
 
-interface SchoolBaseParam {
+export interface SchoolRequestParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE?: string
   /** 표준학교코드 */
   readonly SD_SCHUL_CODE?: string
-}
-
-export interface SchoolRequestParam extends SchoolBaseParam {
   /** 학교명 */
   readonly SCHUL_NM?: string
   /** 학교종류명 */
@@ -31,7 +28,11 @@ export interface SchoolRequestParam extends SchoolBaseParam {
   readonly FOND_SC_NM?: string
 }
 
-export interface MealRequestParam extends SchoolBaseParam {
+export interface MealRequestParam {
+  /** 시도교육청코드 */
+  readonly ATPT_OFCDC_SC_CODE: string
+  /** 표준학교코드 */
+  readonly SD_SCHUL_CODE: string
   /** 식사코드 */
   readonly MMEAL_SC_CODE?: string
   /** 급식일자 */
@@ -42,7 +43,11 @@ export interface MealRequestParam extends SchoolBaseParam {
   readonly MLSV_TO_YMD?: string
 }
 
-export interface ScheduleRequestParam extends SchoolBaseParam {
+export interface ScheduleRequestParam {
+  /** 시도교육청코드 */
+  readonly ATPT_OFCDC_SC_CODE: string
+  /** 표준학교코드 */
+  readonly SD_SCHUL_CODE: string
   /** 주야과정명 */
   readonly DGHT_CRSE_SC_NM?: string
   /** 학교과정명 */
