@@ -45,7 +45,8 @@
     "test": "jest",
     "build": "tsc",
     "release": "semantic-release",
-    "prepack": "rimraf dist && tsc"
+    "prepack": "rimraf dist && tsc",
+    "params": "ts-node scripts/paramParser.ts"
   },
   "packageManager": "pnpm@7.30.0",
   "release": {
