@@ -24,31 +24,51 @@ pnpm add neis.ts
 
 ```ts
 import { Neis } from 'neis.ts'
-import { Logger } from 'tslog' // Optional
+import { Logger } from 'tslog'
 
-const logger = new Logger() // Optional
+const logger = new Logger()
 const neis = new Neis({
-  // NeisConfig 참고
   KEY: 'API KEY',
   Type: 'json',
   pIndex: 1,
   pSize: 100,
-  logger: logger, // Optional
+  logger: logger.getSubLogger({
+    name: 'neis',
+  }),
 })
 
 ;(async () => {
-  const school = await neis.getSchoolOne({
-    // SchoolRequestParams 참고
+  // 학교
+  const school = await neis.getSchool({
+    // or getSchoolOne
     ATPT_OFCDC_SC_CODE: '시도교육청코드',
     SD_SCHUL_CODE: '표준학교코드',
   })
-  const meal = await school.getMealOne({
-    // MealRequestParams 참고
-    MLSV_YMD: 'yyyymmdd',
+
+  // 급식
+  const meal = await neis.getMeal({
+    ATPT_OFCDC_SC_CODE: '시도교육청코드',
+    SD_SCHUL_CODE: '표준학교코드',
+    MLSV_YMD: '날짜',
+  })
+
+  // 학사일정
+  const schedule = await neis.getSchedule({
+    ATPT_OFCDC_SC_CODE: '시도교육청코드',
+    SD_SCHUL_CODE: '표준학교코드',
+    AA_YMD: '날짜',
+  })
+
+  // 학원 / 교습소
+  const academy = await neis.getAcademy({
+    ATPT_OFCDC_SC_CODE: '시도교육청코드',
+    ACA_ASNUM: '학원지정번호',
   })
 
   console.log(school)
   console.log(meal)
+  console.log(schedule)
+  console.log(academy)
 })()
 ```
 
