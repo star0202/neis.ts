@@ -46,7 +46,8 @@
     "build": "tsc",
     "release": "semantic-release",
     "prepack": "rimraf dist && tsc",
-    "params": "ts-node scripts/paramParser.ts"
+    "params": "ts-node scripts/paramParser.ts",
+    "responses": "ts-node scripts/responseParser.ts"
   },
   "packageManager": "pnpm@7.30.0",
   "release": {
