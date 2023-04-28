@@ -64,11 +64,13 @@ export class NeisRequest {
     }
   }
 
-  async schoolInfoRaw(params: SchoolInfoParam): Promise<SchoolInfoResponse[]> {
+  protected async schoolInfoRaw(
+    params: SchoolInfoParam
+  ): Promise<SchoolInfoResponse[]> {
     return await this.request<SchoolInfoResponse>('GET', 'schoolInfo', params)
   }
 
-  async mealServiceDietInfoRaw(
+  protected async mealServiceDietInfoRaw(
     params: MealServiceDietInfoParam
   ): Promise<MealServiceDietInfoResponse[]> {
     return await this.request<MealServiceDietInfoResponse>(
@@ -78,7 +80,7 @@ export class NeisRequest {
     )
   }
 
-  async SchoolScheduleRaw(
+  protected async SchoolScheduleRaw(
     params: SchoolScheduleParam
   ): Promise<SchoolScheduleResponse[]> {
     return await this.request<SchoolScheduleResponse>(
@@ -88,7 +90,7 @@ export class NeisRequest {
     )
   }
 
-  async acaInsTiInfoRaw(
+  protected async acaInsTiInfoRaw(
     params: AcaInsTiInfoParam
   ): Promise<AcaInsTiInfoResponse[]> {
     return await this.request<AcaInsTiInfoResponse>(
