@@ -1,28 +1,24 @@
-import { neis } from '.'
-import type { MealInfo } from '../src'
+import type { MealResponse } from '../src'
+import { AE, SE, YMD } from './constants'
+import { neis } from './utils'
 
 describe('Meal', () => {
-  it('should return MealInfo[]', async () => {
-    const schools = await neis.getSchool({
-      ATPT_OFCDC_SC_CODE: 'B10',
+  it('should return MealResponse[]', async () => {
+    const data = await neis.getMeal({
+      ATPT_OFCDC_SC_CODE: AE,
+      SD_SCHUL_CODE: SE,
     })
 
-    const data: MealInfo[] = []
-    for await (const school of schools) {
-      data.push(await school.getMealOne({ MLSV_YMD: '20230331' }))
-    }
-
-    expect(data).toMatchObject<MealInfo[]>(data)
+    expect(data).toMatchObject<MealResponse[]>(data)
   })
 
-  it('should return MealInfo', async () => {
-    const school = await neis.getSchoolOne({
-      ATPT_OFCDC_SC_CODE: 'B10',
-      SD_SCHUL_CODE: '7091455',
+  it('should return MealResponse', async () => {
+    const data = await neis.getMealOne({
+      ATPT_OFCDC_SC_CODE: AE,
+      SD_SCHUL_CODE: SE,
+      MLSV_YMD: YMD,
     })
 
-    const data = await school.getMealOne({ MLSV_YMD: '20230331' })
-
-    expect(data).toMatchObject<MealInfo>(data)
+    expect(data).toMatchObject<MealResponse>(data)
   })
 })

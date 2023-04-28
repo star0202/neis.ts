@@ -1,12 +1,12 @@
 import type {
-  MealInfo,
   MealRequestParam,
+  MealResponse,
   NeisConfig,
-  RequestParam,
-  ScheduleInfo,
+  RequestParams,
   ScheduleRequestParam,
-  SchoolInfo,
+  ScheduleResponse,
   SchoolRequestParam,
+  SchoolResponse,
 } from './types'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import axios from 'axios'
@@ -62,32 +62,30 @@ export class NeisRequest {
     }
   }
 
-  async schoolInfoRaw(params: SchoolRequestParam): Promise<SchoolInfo[]> {
-    return await this.request<SchoolInfo>('GET', 'schoolInfo', params)
+  async schoolInfoRaw(params: SchoolRequestParam): Promise<SchoolResponse[]> {
+    return await this.request<SchoolResponse>('GET', 'schoolInfo', params)
   }
 
   async mealServiceDietInfoRaw(
-    params: MealRequestParam & {
-      ATPT_OFCDC_SC_CODE: string
-      SD_SCHUL_CODE: string
-    }
-  ): Promise<MealInfo[]> {
-    return await this.request<MealInfo>('GET', 'mealServiceDietInfo', params)
+    params: MealRequestParam
+  ): Promise<MealResponse[]> {
+    return await this.request<MealResponse>(
+      'GET',
+      'mealServiceDietInfo',
+      params
+    )
   }
 
   async SchoolScheduleRaw(
-    params: ScheduleRequestParam & {
-      ATPT_OFCDC_SC_CODE: string
-      SD_SCHUL_CODE: string
-    }
-  ): Promise<ScheduleInfo[]> {
-    return await this.request<ScheduleInfo>('GET', 'SchoolSchedule', params)
+    params: ScheduleRequestParam
+  ): Promise<ScheduleResponse[]> {
+    return await this.request<ScheduleResponse>('GET', 'SchoolSchedule', params)
   }
 
   private async request<T>(
     method: string,
     endpoint: string,
-    params: RequestParam
+    params: RequestParams
   ): Promise<T[]> {
     const config: AxiosRequestConfig = {
       method: method,
@@ -101,22 +99,16 @@ export class NeisRequest {
       },
     }
 
-    try {
-      this.logger?.debug(`${method} /${config.url}`, config.params)
+    this.logger?.debug(`${method} /${config.url}`, config.params)
 
-      const { data } = await this.rest.request(config)
+    const { data } = await this.rest.request(config)
 
-      if (data.RESULT) {
-        this.logger?.error(`${data.RESULT.CODE} ${data.RESULT.MESSAGE}`)
+    if (data.RESULT) {
+      this.logger?.error(`${data.RESULT.CODE} ${data.RESULT.MESSAGE}`)
 
-        throw new Error(`${data.RESULT.CODE} ${data.RESULT.MESSAGE}`)
-      }
-
-      return Object.values((Object.values(data) as object[][])[0][1])[0] as T[]
-    } catch (error) {
-      this.logger?.error(error)
-
-      throw error
+      throw new Error(`${data.RESULT.CODE} ${data.RESULT.MESSAGE}`)
     }
+
+    return Object.values((Object.values(data) as object[][])[0][1])[0] as T[]
   }
 }

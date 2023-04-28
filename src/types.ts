@@ -13,11 +13,14 @@ export interface NeisConfig {
   readonly logger?: Logger<unknown>
 }
 
-export interface SchoolRequestParam {
+interface SchoolBaseParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE?: string
   /** 표준학교코드 */
   readonly SD_SCHUL_CODE?: string
+}
+
+export interface SchoolRequestParam extends SchoolBaseParam {
   /** 학교명 */
   readonly SCHUL_NM?: string
   /** 학교종류명 */
@@ -28,7 +31,7 @@ export interface SchoolRequestParam {
   readonly FOND_SC_NM?: string
 }
 
-export interface MealRequestParam {
+export interface MealRequestParam extends SchoolBaseParam {
   /** 식사코드 */
   readonly MMEAL_SC_CODE?: string
   /** 급식일자 */
@@ -39,25 +42,25 @@ export interface MealRequestParam {
   readonly MLSV_TO_YMD?: string
 }
 
-export interface ScheduleRequestParam {
+export interface ScheduleRequestParam extends SchoolBaseParam {
   /** 주야과정명 */
   readonly DGHT_CRSE_SC_NM?: string
   /** 학교과정명 */
   readonly SCHUL_CRSE_SC_NM?: string
   /** 학사일자 */
-  readonly AY_YMD?: string
+  readonly AA_YMD?: string
   /** 학사시작일자 */
-  readonly AY_FROM_YMD?: string
+  readonly AA_FROM_YMD?: string
   /** 학사종료일자 */
-  readonly AY_TO_YMD?: string
+  readonly AA_TO_YMD?: string
 }
 
-export type RequestParam =
+export type RequestParams =
   | SchoolRequestParam
   | MealRequestParam
   | ScheduleRequestParam
 
-interface BaseInfo {
+interface BaseResponse {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 시도교육청명 */
@@ -68,7 +71,7 @@ interface BaseInfo {
   readonly SCHUL_NM: string
 }
 
-export interface SchoolInfo extends BaseInfo {
+export interface SchoolResponse extends BaseResponse {
   /** 영문학교명 */
   readonly ENG_SCHUL_NM: string
   /** 학교종류명 */
@@ -113,7 +116,7 @@ export interface SchoolInfo extends BaseInfo {
   readonly LOAD_DTM: string
 }
 
-export interface MealInfo extends BaseInfo {
+export interface MealResponse extends BaseResponse {
   /** 식사코드 */
   readonly MMEAL_SC_CODE: string
   /** 식사명 */
@@ -136,7 +139,7 @@ export interface MealInfo extends BaseInfo {
   readonly MLSV_TO_YMD: string
 }
 
-export interface ScheduleInfo extends BaseInfo {
+export interface ScheduleResponse extends BaseResponse {
   /** 학년도 */
   readonly AY: string
   /** 주야과정명 */
