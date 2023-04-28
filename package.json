@@ -43,9 +43,9 @@
   "scripts": {
     "lint": "eslint src --ignore-path .gitignore",
     "test": "jest",
-    "build": "tsc",
+    "build": "rimraf dist && tsc",
     "release": "semantic-release",
-    "prepack": "rimraf dist && tsc",
+    "prepack": "pnpm build",
     "params": "ts-node scripts/paramParser.ts",
     "responses": "ts-node scripts/responseParser.ts"
   },
