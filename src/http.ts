@@ -1,4 +1,6 @@
 import type {
+  AcaInsTiInfoParam,
+  AcaInsTiInfoResponse,
   MealServiceDietInfoParam,
   MealServiceDietInfoResponse,
   NeisConfig,
@@ -82,6 +84,16 @@ export class NeisRequest {
     return await this.request<SchoolScheduleResponse>(
       'GET',
       'SchoolSchedule',
+      params
+    )
+  }
+
+  async acaInsTiInfoRaw(
+    params: AcaInsTiInfoParam
+  ): Promise<AcaInsTiInfoResponse[]> {
+    return await this.request<AcaInsTiInfoResponse>(
+      'GET',
+      'acaInsTiInfo',
       params
     )
   }

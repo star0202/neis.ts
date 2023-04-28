@@ -1,5 +1,7 @@
 import { NeisRequest } from './http'
 import type {
+  AcaInsTiInfoParam,
+  AcaInsTiInfoResponse,
   MealServiceDietInfoParam,
   MealServiceDietInfoResponse,
   NeisConfig,
@@ -44,5 +46,15 @@ export class Neis extends NeisRequest {
     params: SchoolScheduleParam
   ): Promise<SchoolScheduleResponse> {
     return (await this.SchoolScheduleRaw(params))[0]
+  }
+
+  async getAcademy(params: AcaInsTiInfoParam): Promise<AcaInsTiInfoResponse[]> {
+    return await this.acaInsTiInfoRaw(params)
+  }
+
+  async getAcademyOne(
+    params: AcaInsTiInfoParam
+  ): Promise<AcaInsTiInfoResponse> {
+    return (await this.acaInsTiInfoRaw(params))[0]
   }
 }
