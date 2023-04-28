@@ -13,7 +13,7 @@ export interface NeisConfig {
   readonly logger?: Logger<unknown>
 }
 
-export interface SchoolRequestParam {
+export interface SchoolInfoParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE?: string
   /** 표준학교코드 */
@@ -28,7 +28,7 @@ export interface SchoolRequestParam {
   readonly FOND_SC_NM?: string
 }
 
-export interface MealRequestParam {
+export interface MealServiceDietInfoParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 표준학교코드 */
@@ -43,7 +43,7 @@ export interface MealRequestParam {
   readonly MLSV_TO_YMD?: string
 }
 
-export interface ScheduleRequestParam {
+export interface SchoolScheduleParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 표준학교코드 */
@@ -60,12 +60,12 @@ export interface ScheduleRequestParam {
   readonly AA_TO_YMD?: string
 }
 
-export type RequestParams =
-  | SchoolRequestParam
-  | MealRequestParam
-  | ScheduleRequestParam
+export type Params =
+  | SchoolInfoParam
+  | MealServiceDietInfoParam
+  | SchoolScheduleParam
 
-interface BaseResponse {
+interface SchoolBaseResponse {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 시도교육청명 */
@@ -76,7 +76,7 @@ interface BaseResponse {
   readonly SCHUL_NM: string
 }
 
-export interface SchoolResponse extends BaseResponse {
+export interface SchoolInfoResponse extends SchoolBaseResponse {
   /** 영문학교명 */
   readonly ENG_SCHUL_NM: string
   /** 학교종류명 */
@@ -121,7 +121,7 @@ export interface SchoolResponse extends BaseResponse {
   readonly LOAD_DTM: string
 }
 
-export interface MealResponse extends BaseResponse {
+export interface MealServiceDietInfoResponse extends SchoolBaseResponse {
   /** 식사코드 */
   readonly MMEAL_SC_CODE: string
   /** 식사명 */
@@ -144,7 +144,7 @@ export interface MealResponse extends BaseResponse {
   readonly MLSV_TO_YMD: string
 }
 
-export interface ScheduleResponse extends BaseResponse {
+export interface SchoolScheduleResponse extends SchoolBaseResponse {
   /** 학년도 */
   readonly AY: string
   /** 주야과정명 */

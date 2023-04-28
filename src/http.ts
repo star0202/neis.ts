@@ -1,12 +1,12 @@
 import type {
-  MealRequestParam,
-  MealResponse,
+  MealServiceDietInfoParam,
+  MealServiceDietInfoResponse,
   NeisConfig,
-  RequestParams,
-  ScheduleRequestParam,
-  ScheduleResponse,
-  SchoolRequestParam,
-  SchoolResponse,
+  Params,
+  SchoolInfoParam,
+  SchoolInfoResponse,
+  SchoolScheduleParam,
+  SchoolScheduleResponse,
 } from './types'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import axios from 'axios'
@@ -62,14 +62,14 @@ export class NeisRequest {
     }
   }
 
-  async schoolInfoRaw(params: SchoolRequestParam): Promise<SchoolResponse[]> {
-    return await this.request<SchoolResponse>('GET', 'schoolInfo', params)
+  async schoolInfoRaw(params: SchoolInfoParam): Promise<SchoolInfoResponse[]> {
+    return await this.request<SchoolInfoResponse>('GET', 'schoolInfo', params)
   }
 
   async mealServiceDietInfoRaw(
-    params: MealRequestParam
-  ): Promise<MealResponse[]> {
-    return await this.request<MealResponse>(
+    params: MealServiceDietInfoParam
+  ): Promise<MealServiceDietInfoResponse[]> {
+    return await this.request<MealServiceDietInfoResponse>(
       'GET',
       'mealServiceDietInfo',
       params
@@ -77,15 +77,19 @@ export class NeisRequest {
   }
 
   async SchoolScheduleRaw(
-    params: ScheduleRequestParam
-  ): Promise<ScheduleResponse[]> {
-    return await this.request<ScheduleResponse>('GET', 'SchoolSchedule', params)
+    params: SchoolScheduleParam
+  ): Promise<SchoolScheduleResponse[]> {
+    return await this.request<SchoolScheduleResponse>(
+      'GET',
+      'SchoolSchedule',
+      params
+    )
   }
 
   private async request<T>(
     method: string,
     endpoint: string,
-    params: RequestParams
+    params: Params
   ): Promise<T[]> {
     const config: AxiosRequestConfig = {
       method: method,
