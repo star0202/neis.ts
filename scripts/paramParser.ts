@@ -21,6 +21,8 @@ const typeNameFromString = (name: string) => {
   switch (name) {
     case 'STRING':
       return 'string'
+    case 'INTEGER':
+      return 'number'
     default:
       throw new Error('not implemented')
   }
