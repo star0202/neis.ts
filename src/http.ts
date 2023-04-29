@@ -1,6 +1,8 @@
 import type {
   AcaInsTiInfoParam,
   AcaInsTiInfoResponse,
+  ElsTimetableParam,
+  ElsTimetableResponse,
   MealServiceDietInfoParam,
   MealServiceDietInfoResponse,
   NeisConfig,
@@ -96,6 +98,16 @@ export class NeisRequest {
     return await this.request<AcaInsTiInfoResponse>(
       'GET',
       'acaInsTiInfo',
+      params
+    )
+  }
+
+  protected async elsTimetableRaw(
+    params: ElsTimetableParam
+  ): Promise<ElsTimetableResponse[]> {
+    return await this.request<ElsTimetableResponse>(
+      'GET',
+      'elsTimetable',
       params
     )
   }

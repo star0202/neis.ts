@@ -13,6 +13,13 @@ export interface NeisConfig {
   readonly logger?: Logger<unknown>
 }
 
+interface RequiresSchoolParam {
+  /** 시도교육청코드 */
+  readonly ATPT_OFCDC_SC_CODE: string
+  /** 표준학교코드 */
+  readonly SD_SCHUL_CODE: string
+}
+
 export interface SchoolInfoParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE?: string
@@ -28,11 +35,7 @@ export interface SchoolInfoParam {
   readonly FOND_SC_NM?: string
 }
 
-export interface MealServiceDietInfoParam {
-  /** 시도교육청코드 */
-  readonly ATPT_OFCDC_SC_CODE: string
-  /** 표준학교코드 */
-  readonly SD_SCHUL_CODE: string
+export interface MealServiceDietInfoParam extends RequiresSchoolParam {
   /** 식사코드 */
   readonly MMEAL_SC_CODE?: string
   /** 급식일자 */
@@ -43,11 +46,7 @@ export interface MealServiceDietInfoParam {
   readonly MLSV_TO_YMD?: string
 }
 
-export interface SchoolScheduleParam {
-  /** 시도교육청코드 */
-  readonly ATPT_OFCDC_SC_CODE: string
-  /** 표준학교코드 */
-  readonly SD_SCHUL_CODE: string
+export interface SchoolScheduleParam extends RequiresSchoolParam {
   /** 주야과정명 */
   readonly DGHT_CRSE_SC_NM?: string
   /** 학교과정명 */
@@ -77,13 +76,33 @@ export interface AcaInsTiInfoParam {
   readonly LE_CRSE_NM?: string
 }
 
+export interface ElsTimetableParam extends RequiresSchoolParam {
+  /** 학년도 */
+  readonly AY?: string
+  /** 학기 */
+  readonly SEM?: string
+  /** 시간표일자 */
+  readonly ALL_TI_YMD?: string
+  /** 학년 */
+  readonly GRADE?: string
+  /** 반명 */
+  readonly CLASS_NM?: string
+  /** 교시 */
+  readonly PERIO?: string
+  /** 시간표시작일자 */
+  readonly TI_FROM_YMD?: string
+  /** 시간표종료일자 */
+  readonly TI_TO_YMD?: string
+}
+
 export type Params =
   | SchoolInfoParam
   | MealServiceDietInfoParam
   | SchoolScheduleParam
   | AcaInsTiInfoParam
+  | ElsTimetableParam
 
-interface SchoolBaseResponse {
+interface BaseSchoolResponse {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 시도교육청명 */
@@ -94,7 +113,7 @@ interface SchoolBaseResponse {
   readonly SCHUL_NM: string
 }
 
-export interface SchoolInfoResponse extends SchoolBaseResponse {
+export interface SchoolInfoResponse extends BaseSchoolResponse {
   /** 영문학교명 */
   readonly ENG_SCHUL_NM: string
   /** 학교종류명 */
@@ -139,7 +158,7 @@ export interface SchoolInfoResponse extends SchoolBaseResponse {
   readonly LOAD_DTM: string
 }
 
-export interface MealServiceDietInfoResponse extends SchoolBaseResponse {
+export interface MealServiceDietInfoResponse extends BaseSchoolResponse {
   /** 식사코드 */
   readonly MMEAL_SC_CODE: string
   /** 식사명 */
@@ -162,7 +181,7 @@ export interface MealServiceDietInfoResponse extends SchoolBaseResponse {
   readonly MLSV_TO_YMD: string
 }
 
-export interface SchoolScheduleResponse extends SchoolBaseResponse {
+export interface SchoolScheduleResponse extends BaseSchoolResponse {
   /** 학년도 */
   readonly AY: string
   /** 주야과정명 */
@@ -240,6 +259,25 @@ export interface AcaInsTiInfoResponse {
   readonly FA_RDNMA: string
   /** 도로명상세주소 */
   readonly FA_RDNDA: string
+  /** 수정일 */
+  readonly LOAD_DTM: string
+}
+
+export interface ElsTimetableResponse extends BaseSchoolResponse {
+  /** 학년도 */
+  readonly AY: string
+  /** 학기 */
+  readonly SEM: string
+  /** 시간표일자 */
+  readonly ALL_TI_YMD: string
+  /** 학년 */
+  readonly GRADE: string
+  /** 반명 */
+  readonly CLASS_NM: string
+  /** 교시 */
+  readonly PERIO: string
+  /** 수업내용 */
+  readonly ITRT_CNTNT: string
   /** 수정일 */
   readonly LOAD_DTM: string
 }
