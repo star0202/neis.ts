@@ -21,7 +21,7 @@ import type {
 
 export class Neis extends NeisRequest {
   constructor(config?: NeisConfig) {
-    super({ Type: 'json', pIndex: 1, pSize: 100, ...config })
+    super({ type: 'json', pIndex: 1, pSize: 100, ...config })
   }
 
   async getSchool(params: SchoolInfoParam): Promise<SchoolInfoResponse[]> {
