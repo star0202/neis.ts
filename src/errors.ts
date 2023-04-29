@@ -1,33 +1,31 @@
-class NeisError extends Error {}
-
-class HTTPError extends NeisError {
+abstract class NeisError extends Error {
   constructor(code: string, msg: string) {
     super(`${code} ${msg}`)
     this.name = this.constructor.name
   }
 }
 
-export class MissingRequiredValueError extends HTTPError {}
+export class MissingRequiredValueError extends NeisError {}
 
-export class AuthenticationError extends HTTPError {}
+export class AuthenticationError extends NeisError {}
 
-export class ServiceNotFoundError extends HTTPError {}
+export class ServiceNotFoundError extends NeisError {}
 
-export class InvalidLocationValueError extends HTTPError {}
+export class InvalidLocationValueError extends NeisError {}
 
-export class RequestLimitExceededError extends HTTPError {}
+export class RequestLimitExceededError extends NeisError {}
 
-export class DailyTrafficLimitExceededError extends HTTPError {}
+export class DailyTrafficLimitExceededError extends NeisError {}
 
-export class ServerError extends HTTPError {}
+export class ServerError extends NeisError {}
 
-export class DatabaseConnectionError extends HTTPError {}
+export class DatabaseConnectionError extends NeisError {}
 
-export class SQLStatementError extends HTTPError {}
+export class SQLStatementError extends NeisError {}
 
-export class LimitUseAuthenticationKeyError extends HTTPError {}
+export class LimitUseAuthenticationKeyError extends NeisError {}
 
-export class DataNotFoundError extends HTTPError {}
+export class DataNotFoundError extends NeisError {}
 
 export const ErrorsMapping: {
   [key: string]: new (code: string, msg: string) => NeisError
