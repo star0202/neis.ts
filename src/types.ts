@@ -16,7 +16,7 @@ interface DefaultParam {
   readonly pSize?: number
 }
 
-interface DefaultParamWithSchoolParam {
+interface DefaultParamWithSchoolParam extends DefaultParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 표준학교코드 */
