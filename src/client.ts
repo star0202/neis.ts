@@ -6,6 +6,8 @@ import type {
   ElsTimetableResponse,
   MealServiceDietInfoParam,
   MealServiceDietInfoResponse,
+  MisTimetableParam,
+  MisTimetableResponse,
   NeisConfig,
   SchoolInfoParam,
   SchoolInfoResponse,
@@ -70,5 +72,17 @@ export class Neis extends NeisRequest {
     params: ElsTimetableParam
   ): Promise<ElsTimetableResponse> {
     return (await this.elsTimetableRaw(params))[0]
+  }
+
+  async getMisTimetable(
+    params: MisTimetableParam
+  ): Promise<MisTimetableResponse[]> {
+    return await this.misTimetableRaw(params)
+  }
+
+  async getMisTimetableOne(
+    params: MisTimetableParam
+  ): Promise<MisTimetableResponse> {
+    return (await this.misTimetableRaw(params))[0]
   }
 }

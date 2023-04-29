@@ -108,12 +108,18 @@ export interface ElsTimetableParam extends DefaultParam, RequiresSchoolParam {
   readonly TI_TO_YMD?: string
 }
 
+export interface MisTimetableParam extends ElsTimetableParam {
+  /** 주야과정명 */
+  readonly DGHT_CRSE_SC_NM?: string
+}
+
 export type Params =
   | SchoolInfoParam
   | MealServiceDietInfoParam
   | SchoolScheduleParam
   | AcaInsTiInfoParam
   | ElsTimetableParam
+  | MisTimetableParam
 
 interface BaseSchoolResponse {
   /** 시도교육청코드 */
@@ -293,4 +299,9 @@ export interface ElsTimetableResponse extends BaseSchoolResponse {
   readonly ITRT_CNTNT: string
   /** 수정일 */
   readonly LOAD_DTM: string
+}
+
+export interface MisTimetableResponse extends ElsTimetableResponse {
+  /** 주야과정명 */
+  readonly DGHT_CRSE_SC_NM: string
 }

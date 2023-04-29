@@ -6,6 +6,8 @@ import type {
   ElsTimetableResponse,
   MealServiceDietInfoParam,
   MealServiceDietInfoResponse,
+  MisTimetableParam,
+  MisTimetableResponse,
   NeisConfig,
   Params,
   SchoolInfoParam,
@@ -109,6 +111,16 @@ export class NeisRequest {
     return await this.request<ElsTimetableResponse>(
       'GET',
       'elsTimetable',
+      params
+    )
+  }
+
+  protected async misTimetableRaw(
+    params: MisTimetableParam
+  ): Promise<MisTimetableResponse[]> {
+    return await this.request<MisTimetableResponse>(
+      'GET',
+      'misTimetable',
       params
     )
   }
