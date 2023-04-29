@@ -29,30 +29,26 @@ export class NeisRequest {
 
   private readonly logger?: Logger<unknown>
 
-  private readonly KEY?: string
-  private readonly Type: 'json' | 'xml'
+  private readonly key?: string
+  private readonly type: 'json' | 'xml'
   private readonly pIndex: number
   private readonly pSize: number
 
   constructor(
-    config: NeisConfig & {
-      Type: 'json' | 'xml'
-      pIndex: number
-      pSize: number
-    }
+    config: NeisConfig & Required<Pick<NeisConfig, 'type' | 'pIndex' | 'pSize'>>
   ) {
     this.rest = axios.create({
       baseURL: this.baseURL,
     })
 
-    this.KEY = config.KEY
-    this.Type = config.Type
+    this.key = config.key
+    this.type = config.type
     this.pIndex = config.pIndex
     this.pSize = config.pSize
 
     this.logger = config.logger?.getSubLogger({ name: 'HTTP' })
 
-    if (!this.KEY) {
+    if (!this.key) {
       this.logger?.warn('No key provided, using a sample key.')
 
       if (this.pIndex !== 1) {
@@ -158,8 +154,8 @@ export class NeisRequest {
       method: method,
       url: endpoint,
       params: {
-        KEY: this.KEY,
-        Type: this.Type,
+        KEY: this.key,
+        Type: this.type,
         pIndex: this.pIndex,
         pSize: this.pSize,
         ...params,

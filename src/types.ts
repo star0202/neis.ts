@@ -1,23 +1,15 @@
 import type { Logger } from 'tslog'
 
-export interface NeisConfig {
-  /** NEIS API KEY */
-  readonly KEY?: string
-  /** 호출 문서(xml, json) */
-  readonly Type?: 'json' | 'xml'
-  /** 페이지 번호 */
-  readonly pIndex?: number
-  /** 페이지 당 신청 숫자 */
-  readonly pSize?: number
+export interface NeisConfig extends DefaultParam {
   /** tslog Logger */
   readonly logger?: Logger<unknown>
 }
 
 interface DefaultParam {
   /** 인증키 */
-  readonly KEY?: string
+  readonly key?: string
   /** 호출 문서(xml, json) */
-  readonly Type?: string
+  readonly type?: 'json' | 'xml'
   /** 페이지 위치 */
   readonly pIndex?: number
   /** 페이지 당 신청 숫자 */
