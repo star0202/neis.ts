@@ -13,6 +13,17 @@ export interface NeisConfig {
   readonly logger?: Logger<unknown>
 }
 
+interface DefaultParam {
+  /** 인증키 */
+  readonly KEY?: string
+  /** 호출 문서(xml, json) */
+  readonly Type?: string
+  /** 페이지 위치 */
+  readonly pIndex?: number
+  /** 페이지 당 신청 숫자 */
+  readonly pSize?: number
+}
+
 interface RequiresSchoolParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
@@ -20,7 +31,7 @@ interface RequiresSchoolParam {
   readonly SD_SCHUL_CODE: string
 }
 
-export interface SchoolInfoParam {
+export interface SchoolInfoParam extends DefaultParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE?: string
   /** 표준학교코드 */
@@ -35,7 +46,9 @@ export interface SchoolInfoParam {
   readonly FOND_SC_NM?: string
 }
 
-export interface MealServiceDietInfoParam extends RequiresSchoolParam {
+export interface MealServiceDietInfoParam
+  extends DefaultParam,
+    RequiresSchoolParam {
   /** 식사코드 */
   readonly MMEAL_SC_CODE?: string
   /** 급식일자 */
@@ -46,7 +59,7 @@ export interface MealServiceDietInfoParam extends RequiresSchoolParam {
   readonly MLSV_TO_YMD?: string
 }
 
-export interface SchoolScheduleParam extends RequiresSchoolParam {
+export interface SchoolScheduleParam extends DefaultParam, RequiresSchoolParam {
   /** 주야과정명 */
   readonly DGHT_CRSE_SC_NM?: string
   /** 학교과정명 */
@@ -59,7 +72,7 @@ export interface SchoolScheduleParam extends RequiresSchoolParam {
   readonly AA_TO_YMD?: string
 }
 
-export interface AcaInsTiInfoParam {
+export interface AcaInsTiInfoParam extends DefaultParam {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 행정구역명 */
@@ -76,7 +89,7 @@ export interface AcaInsTiInfoParam {
   readonly LE_CRSE_NM?: string
 }
 
-export interface ElsTimetableParam extends RequiresSchoolParam {
+export interface ElsTimetableParam extends DefaultParam, RequiresSchoolParam {
   /** 학년도 */
   readonly AY?: string
   /** 학기 */
