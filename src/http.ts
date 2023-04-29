@@ -74,57 +74,36 @@ export class NeisRequest {
   }
 
   protected async mealServiceDietInfoRaw(params: MealServiceDietInfoParam) {
-    return this.get<MealServiceDietInfoResponse>(
-      'mealServiceDietInfo',
-      params
-    )
+    return this.get<MealServiceDietInfoResponse>('mealServiceDietInfo', params)
   }
 
   protected async SchoolScheduleRaw(params: SchoolScheduleParam) {
-    return this.get<SchoolScheduleResponse>(
-      'SchoolSchedule',
-      params
-    )
+    return this.get<SchoolScheduleResponse>('SchoolSchedule', params)
   }
 
   protected async acaInsTiInfoRaw(params: AcaInsTiInfoParam) {
-    return this.get<AcaInsTiInfoResponse>(
-      'acaInsTiInfo',
-      params
-    )
+    return this.get<AcaInsTiInfoResponse>('acaInsTiInfo', params)
   }
 
   protected async elsTimetableRaw(params: ElsTimetableParam) {
-    return this.get<ElsTimetableResponse>(
-      'elsTimetable',
-      params
-    )
+    return this.get<ElsTimetableResponse>('elsTimetable', params)
   }
 
   protected async misTimetableRaw(params: MisTimetableParam) {
-    return this.get<MisTimetableResponse>(
-      'misTimetable',
-      params
-    )
+    return this.get<MisTimetableResponse>('misTimetable', params)
   }
 
   protected async hisTimetableRaw(params: HisTimetableParam) {
-    return this.get<HisTimetableResponse>(
-      'hisTimetable',
-      params
-    )
+    return this.get<HisTimetableResponse>('hisTimetable', params)
   }
 
   protected async spsTimetableRaw(params: SpsTimetableParam) {
-    return this.get<SpsTimetableResponse>(
-      'spsTimetable',
-      params
-    )
+    return this.get<SpsTimetableResponse>('spsTimetable', params)
   }
 
-	private async get<T>(endpoint: string, params: Params) {
-		return this.request<T>('GET', endpoint, params)
-	}
+  private async get<T>(endpoint: string, params: Params) {
+    return this.request<T>('GET', endpoint, params)
+  }
   private async request<T>(
     method: string,
     endpoint: string,
