@@ -167,7 +167,7 @@ export class NeisRequest {
     const { data } = await this.rest.request(config)
 
     if (data.RESULT) {
-      const code = data.RESULT.CODE
+      const code = data.RESULT.CODE as keyof typeof ErrorsMapping
       const err = new ErrorsMapping[code](code, data.RESULT.MESSAGE)
 
       this.logger?.error(err)

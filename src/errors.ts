@@ -27,9 +27,7 @@ export class LimitUseAuthenticationKeyError extends NeisError {}
 
 export class DataNotFoundError extends NeisError {}
 
-export const ErrorsMapping: {
-  [key: string]: new (code: string, msg: string) => NeisError
-} = {
+export const ErrorsMapping = {
   'ERROR-300': MissingRequiredValueError,
   'ERROR-290': AuthenticationError,
   'ERROR-310': ServiceNotFoundError,
@@ -41,4 +39,4 @@ export const ErrorsMapping: {
   'ERROR-601': SQLStatementError,
   'INFO-300': LimitUseAuthenticationKeyError,
   'INFO-200': DataNotFoundError,
-}
+} satisfies Record<string, typeof NeisError>
