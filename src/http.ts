@@ -1,3 +1,4 @@
+import { ErrorsMapping } from './errors'
 import type {
   AcaInsTiInfoParam,
   AcaInsTiInfoResponse,
@@ -134,9 +135,12 @@ export class NeisRequest {
     const { data } = await this.rest.request(config)
 
     if (data.RESULT) {
-      this.logger?.error(`${data.RESULT.CODE} ${data.RESULT.MESSAGE}`)
+      const code = data.RESULT.CODE
+      const err = new ErrorsMapping[code](code, data.RESULT.MESSAGE)
 
-      throw new Error(`${data.RESULT.CODE} ${data.RESULT.MESSAGE}`)
+      this.logger?.error(err)
+
+      throw err
     }
 
     return Object.values((Object.values(data) as object[][])[0][1])[0] as T[]
