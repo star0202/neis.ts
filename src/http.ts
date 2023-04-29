@@ -16,6 +16,8 @@ import type {
   SchoolInfoResponse,
   SchoolScheduleParam,
   SchoolScheduleResponse,
+  SpsTimetableParam,
+  SpsTimetableResponse,
 } from './types'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import axios from 'axios'
@@ -133,6 +135,16 @@ export class NeisRequest {
     return await this.request<HisTimetableResponse>(
       'GET',
       'hisTimetable',
+      params
+    )
+  }
+
+  protected async spsTimetableRaw(
+    params: SpsTimetableParam
+  ): Promise<SpsTimetableResponse[]> {
+    return await this.request<SpsTimetableResponse>(
+      'GET',
+      'spsTimetable',
       params
     )
   }

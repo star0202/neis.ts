@@ -15,6 +15,8 @@ import type {
   SchoolInfoResponse,
   SchoolScheduleParam,
   SchoolScheduleResponse,
+  SpsTimetableParam,
+  SpsTimetableResponse,
 } from './types'
 
 export class Neis extends NeisRequest {
@@ -98,5 +100,17 @@ export class Neis extends NeisRequest {
     params: HisTimetableParam
   ): Promise<HisTimetableResponse> {
     return (await this.hisTimetableRaw(params))[0]
+  }
+
+  async getSpsTimetable(
+    params: SpsTimetableParam
+  ): Promise<SpsTimetableResponse[]> {
+    return await this.spsTimetableRaw(params)
+  }
+
+  async getSpsTimetableOne(
+    params: SpsTimetableParam
+  ): Promise<SpsTimetableResponse> {
+    return (await this.spsTimetableRaw(params))[0]
   }
 }
