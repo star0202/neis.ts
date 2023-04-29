@@ -69,82 +69,62 @@ export class NeisRequest {
     }
   }
 
-  protected async schoolInfoRaw(
-    params: SchoolInfoParam
-  ): Promise<SchoolInfoResponse[]> {
-    return await this.request<SchoolInfoResponse>('GET', 'schoolInfo', params)
+  protected async schoolInfoRaw(params: SchoolInfoParam) {
+    return this.get<SchoolInfoResponse>('schoolInfo', params)
   }
 
-  protected async mealServiceDietInfoRaw(
-    params: MealServiceDietInfoParam
-  ): Promise<MealServiceDietInfoResponse[]> {
-    return await this.request<MealServiceDietInfoResponse>(
-      'GET',
+  protected async mealServiceDietInfoRaw(params: MealServiceDietInfoParam) {
+    return this.get<MealServiceDietInfoResponse>(
       'mealServiceDietInfo',
       params
     )
   }
 
-  protected async SchoolScheduleRaw(
-    params: SchoolScheduleParam
-  ): Promise<SchoolScheduleResponse[]> {
-    return await this.request<SchoolScheduleResponse>(
-      'GET',
+  protected async SchoolScheduleRaw(params: SchoolScheduleParam) {
+    return this.get<SchoolScheduleResponse>(
       'SchoolSchedule',
       params
     )
   }
 
-  protected async acaInsTiInfoRaw(
-    params: AcaInsTiInfoParam
-  ): Promise<AcaInsTiInfoResponse[]> {
-    return await this.request<AcaInsTiInfoResponse>(
-      'GET',
+  protected async acaInsTiInfoRaw(params: AcaInsTiInfoParam) {
+    return this.get<AcaInsTiInfoResponse>(
       'acaInsTiInfo',
       params
     )
   }
 
-  protected async elsTimetableRaw(
-    params: ElsTimetableParam
-  ): Promise<ElsTimetableResponse[]> {
-    return await this.request<ElsTimetableResponse>(
-      'GET',
+  protected async elsTimetableRaw(params: ElsTimetableParam) {
+    return this.get<ElsTimetableResponse>(
       'elsTimetable',
       params
     )
   }
 
-  protected async misTimetableRaw(
-    params: MisTimetableParam
-  ): Promise<MisTimetableResponse[]> {
-    return await this.request<MisTimetableResponse>(
-      'GET',
+  protected async misTimetableRaw(params: MisTimetableParam) {
+    return this.get<MisTimetableResponse>(
       'misTimetable',
       params
     )
   }
 
-  protected async hisTimetableRaw(
-    params: HisTimetableParam
-  ): Promise<HisTimetableResponse[]> {
-    return await this.request<HisTimetableResponse>(
-      'GET',
+  protected async hisTimetableRaw(params: HisTimetableParam) {
+    return this.get<HisTimetableResponse>(
       'hisTimetable',
       params
     )
   }
 
-  protected async spsTimetableRaw(
-    params: SpsTimetableParam
-  ): Promise<SpsTimetableResponse[]> {
-    return await this.request<SpsTimetableResponse>(
-      'GET',
+  protected async spsTimetableRaw(params: SpsTimetableParam) {
+    return this.get<SpsTimetableResponse>(
       'spsTimetable',
       params
     )
   }
 
+	private async get<T>(endpoint: string, params: Params) {
+		return this.request<T>('GET', endpoint, params)
+	}
   private async request<T>(
     method: string,
     endpoint: string,

@@ -1,22 +1,14 @@
 import { NeisRequest } from './http'
 import type {
   AcaInsTiInfoParam,
-  AcaInsTiInfoResponse,
   ElsTimetableParam,
-  ElsTimetableResponse,
   HisTimetableParam,
-  HisTimetableResponse,
   MealServiceDietInfoParam,
-  MealServiceDietInfoResponse,
   MisTimetableParam,
-  MisTimetableResponse,
   NeisConfig,
   SchoolInfoParam,
-  SchoolInfoResponse,
   SchoolScheduleParam,
-  SchoolScheduleResponse,
   SpsTimetableParam,
-  SpsTimetableResponse,
 } from './types'
 
 export class Neis extends NeisRequest {
@@ -24,93 +16,70 @@ export class Neis extends NeisRequest {
     super({ type: 'json', pIndex: 1, pSize: 100, ...config })
   }
 
-  async getSchool(params: SchoolInfoParam): Promise<SchoolInfoResponse[]> {
-    return await this.schoolInfoRaw(params)
+  async getSchool(params: SchoolInfoParam) {
+    return this.schoolInfoRaw(params)
   }
 
-  async getSchoolOne(params: SchoolInfoParam): Promise<SchoolInfoResponse> {
-    return (await this.schoolInfoRaw(params))[0]
+  async getSchoolOne(params: SchoolInfoParam) {
+    return firstOf(this.schoolInfoRaw(params))
   }
 
-  async getMeal(
-    params: MealServiceDietInfoParam
-  ): Promise<MealServiceDietInfoResponse[]> {
-    return await this.mealServiceDietInfoRaw(params)
+  async getMeal(params: MealServiceDietInfoParam) {
+    return this.mealServiceDietInfoRaw(params)
   }
 
-  async getMealOne(
-    params: MealServiceDietInfoParam
-  ): Promise<MealServiceDietInfoResponse> {
-    return (await this.mealServiceDietInfoRaw(params))[0]
+  async getMealOne(params: MealServiceDietInfoParam) {
+    return firstOf(this.mealServiceDietInfoRaw(params))
   }
 
-  async getSchedule(
-    params: SchoolScheduleParam
-  ): Promise<SchoolScheduleResponse[]> {
-    return await this.SchoolScheduleRaw(params)
+  async getSchedule(params: SchoolScheduleParam) {
+    return this.SchoolScheduleRaw(params)
   }
 
-  async getScheduleOne(
-    params: SchoolScheduleParam
-  ): Promise<SchoolScheduleResponse> {
-    return (await this.SchoolScheduleRaw(params))[0]
+  async getScheduleOne(params: SchoolScheduleParam) {
+    return firstOf(this.SchoolScheduleRaw(params))
   }
 
-  async getAcademy(params: AcaInsTiInfoParam): Promise<AcaInsTiInfoResponse[]> {
-    return await this.acaInsTiInfoRaw(params)
+  async getAcademy(params: AcaInsTiInfoParam) {
+    return this.acaInsTiInfoRaw(params)
   }
 
-  async getAcademyOne(
-    params: AcaInsTiInfoParam
-  ): Promise<AcaInsTiInfoResponse> {
-    return (await this.acaInsTiInfoRaw(params))[0]
+  async getAcademyOne(params: AcaInsTiInfoParam) {
+    return firstOf(this.acaInsTiInfoRaw(params))
   }
 
-  async getElsTimetable(
-    params: ElsTimetableParam
-  ): Promise<ElsTimetableResponse[]> {
-    return await this.elsTimetableRaw(params)
+  async getElsTimetable(params: ElsTimetableParam) {
+    return this.elsTimetableRaw(params)
   }
 
-  async getElsTimetableOne(
-    params: ElsTimetableParam
-  ): Promise<ElsTimetableResponse> {
-    return (await this.elsTimetableRaw(params))[0]
+  async getElsTimetableOne(params: ElsTimetableParam) {
+    return firstOf(this.elsTimetableRaw(params))
   }
 
-  async getMisTimetable(
-    params: MisTimetableParam
-  ): Promise<MisTimetableResponse[]> {
-    return await this.misTimetableRaw(params)
+  async getMisTimetable(params: MisTimetableParam) {
+    return this.misTimetableRaw(params)
   }
 
-  async getMisTimetableOne(
-    params: MisTimetableParam
-  ): Promise<MisTimetableResponse> {
-    return (await this.misTimetableRaw(params))[0]
+  async getMisTimetableOne(params: MisTimetableParam) {
+    return firstOf(this.misTimetableRaw(params))
   }
 
-  async getHisTimetable(
-    params: HisTimetableParam
-  ): Promise<HisTimetableResponse[]> {
-    return await this.hisTimetableRaw(params)
+  async getHisTimetable(params: HisTimetableParam) {
+    return this.hisTimetableRaw(params)
   }
 
-  async getHisTimetableOne(
-    params: HisTimetableParam
-  ): Promise<HisTimetableResponse> {
-    return (await this.hisTimetableRaw(params))[0]
+  async getHisTimetableOne(params: HisTimetableParam) {
+    return firstOf(this.hisTimetableRaw(params))
   }
 
-  async getSpsTimetable(
-    params: SpsTimetableParam
-  ): Promise<SpsTimetableResponse[]> {
-    return await this.spsTimetableRaw(params)
+  async getSpsTimetable(params: SpsTimetableParam) {
+    return this.spsTimetableRaw(params)
   }
 
-  async getSpsTimetableOne(
-    params: SpsTimetableParam
-  ): Promise<SpsTimetableResponse> {
-    return (await this.spsTimetableRaw(params))[0]
+  async getSpsTimetableOne(params: SpsTimetableParam) {
+    return firstOf(this.spsTimetableRaw(params))
   }
 }
+
+const firstOf = <T>(promise: Promise<Array<T>>) =>
+	promise.then(res => res[0])
