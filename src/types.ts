@@ -89,7 +89,7 @@ export interface AcaInsTiInfoParam extends DefaultParam {
   readonly LE_CRSE_NM?: string
 }
 
-export interface ElsTimetableParam extends DefaultParam, RequiresSchoolParam {
+interface BaseTimetableParam extends DefaultParam, RequiresSchoolParam {
   /** 학년도 */
   readonly AY?: string
   /** 학기 */
@@ -100,17 +100,29 @@ export interface ElsTimetableParam extends DefaultParam, RequiresSchoolParam {
   readonly GRADE?: string
   /** 반명 */
   readonly CLASS_NM?: string
-  /** 교시 */
-  readonly PERIO?: string
   /** 시간표시작일자 */
   readonly TI_FROM_YMD?: string
   /** 시간표종료일자 */
   readonly TI_TO_YMD?: string
 }
 
+export interface ElsTimetableParam extends BaseTimetableParam {
+  /** 교시 */
+  readonly PERIO?: string
+}
+
 export interface MisTimetableParam extends ElsTimetableParam {
   /** 주야과정명 */
   readonly DGHT_CRSE_SC_NM?: string
+}
+
+export interface HisTimetableParam extends BaseTimetableParam {
+  /** 계열명 */
+  readonly ORD_SC_NM?: string
+  /** 학과명 */
+  readonly DDDEP_NM?: string
+  /** 강의실명 */
+  readonly CLRM_NM?: string
 }
 
 export type Params =
@@ -120,6 +132,7 @@ export type Params =
   | AcaInsTiInfoParam
   | ElsTimetableParam
   | MisTimetableParam
+  | HisTimetableParam
 
 interface BaseSchoolResponse {
   /** 시도교육청코드 */
@@ -304,4 +317,13 @@ export interface ElsTimetableResponse extends BaseSchoolResponse {
 export interface MisTimetableResponse extends ElsTimetableResponse {
   /** 주야과정명 */
   readonly DGHT_CRSE_SC_NM: string
+}
+
+export interface HisTimetableResponse extends MisTimetableResponse {
+  /** 계열명 */
+  readonly ORD_SC_NM: string
+  /** 학과명 */
+  readonly DDDEP_NM: string
+  /** 강의실명 */
+  readonly CLRM_NM: string
 }

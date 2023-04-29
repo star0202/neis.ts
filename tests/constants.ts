@@ -5,3 +5,4 @@ export const YMD = '20230428'
 
 export const ELS = '7091414'
 export const MIS = '7091455'
+export const HIS = '7011169'
