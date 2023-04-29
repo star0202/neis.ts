@@ -2,7 +2,7 @@ class NeisError extends Error {}
 
 class HTTPError extends NeisError {
   constructor(code: string, msg: string) {
-    super(`${code}: ${msg}`)
+    super(`${code} ${msg}`)
     this.name = this.constructor.name
   }
 }
