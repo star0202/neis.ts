@@ -104,6 +104,7 @@ export class NeisRequest {
   private async get<T>(endpoint: string, params: Params) {
     return this.request<T>('GET', endpoint, params)
   }
+
   private async request<T>(
     method: string,
     endpoint: string,
