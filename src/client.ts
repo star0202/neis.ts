@@ -81,4 +81,4 @@ export class Neis extends NeisRequest {
   }
 }
 
-const firstOf = <T>(promise: Promise<>) => promise.then((res) => res[0])
+const firstOf = <T>(promise: Promise<T[]>) => promise.then((res) => res[0])
