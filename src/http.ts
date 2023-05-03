@@ -110,15 +110,17 @@ export class NeisRequest {
     endpoint: string,
     params: Params
   ): Promise<T[]> {
+    const { key, type, ...restParams } = params
+
     const config: AxiosRequestConfig = {
       method: method,
       url: endpoint,
       params: {
-        KEY: this.key,
-        Type: this.type,
+        KEY: key ?? this.key,
+        Type: type ?? this.type,
         pIndex: this.pIndex,
         pSize: this.pSize,
-        ...params,
+        ...restParams,
       },
     }
 
