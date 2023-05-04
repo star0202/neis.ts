@@ -134,26 +134,23 @@ export class NeisRequest {
 
     this.logger?.debug(`${method} /${config.url}`, config.params)
 
-    try {
-      const res = await this.rest.request(config)
-      const { data } = res
-
-      if (data.RESULT) {
-        const code = data.RESULT.CODE as keyof typeof ErrorsMapping
-        const err = new ErrorsMapping[code](code, data.RESULT.MESSAGE)
-
-        this.logger?.error(err)
-
-        throw err
-      }
-
-      return Object.values((Object.values(data) as object[][])[0][1])[0] as T[]
-    } catch (err) {
+    const { data } = await this.rest.request(config).catch(() => {
       const error = new RequestTimeoutError(timeout)
 
       this.logger?.error(error)
 
       throw error
+    })
+
+    if (data.RESULT) {
+      const code = data.RESULT.CODE as keyof typeof ErrorsMapping
+      const err = new ErrorsMapping[code](code, data.RESULT.MESSAGE)
+
+      this.logger?.error(err)
+
+      throw err
     }
+
+    return Object.values((Object.values(data) as object[][])[0][1])[0] as T[]
   }
 }
