@@ -65,6 +65,8 @@ const neis = new Neis({
     ACA_ASNUM: '학원지정번호',
   })
 
+  // and more
+
   console.log(school)
   console.log(meal)
   console.log(schedule)
