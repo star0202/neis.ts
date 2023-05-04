@@ -4,7 +4,7 @@ import { neis } from './utils'
 
 describe('SchoolMajorinfo', () => {
   it('should return SchoolMajorinfoResponse[]', async () => {
-    const data = await neis.getSchoolMajorInfo({
+    const data = await neis.getMajor({
       ATPT_OFCDC_SC_CODE: AE,
       SD_SCHUL_CODE: SE,
     })
@@ -13,7 +13,7 @@ describe('SchoolMajorinfo', () => {
   })
 
   it('should return SchoolMajorinfoResponse', async () => {
-    const data = await neis.getSchoolMajorInfoOne({
+    const data = await neis.getMajorOne({
       ATPT_OFCDC_SC_CODE: AE,
       SD_SCHUL_CODE: SE,
     })

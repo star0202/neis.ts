@@ -4,7 +4,7 @@ import { neis } from './utils'
 
 describe('ClassInfo', () => {
   it('should return ClassInfoResponse[]', async () => {
-    const data = await neis.getClassInfo({
+    const data = await neis.getClass({
       ATPT_OFCDC_SC_CODE: AE,
       SD_SCHUL_CODE: SE,
     })
@@ -13,7 +13,7 @@ describe('ClassInfo', () => {
   })
 
   it('should return ClassInfoResponse', async () => {
-    const data = await neis.getClassInfoOne({
+    const data = await neis.getClassOne({
       ATPT_OFCDC_SC_CODE: AE,
       SD_SCHUL_CODE: SE,
       GRADE: '1',

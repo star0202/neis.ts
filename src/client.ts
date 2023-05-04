@@ -18,83 +18,103 @@ export class Neis extends NeisRequest {
     super({ type: 'json', pIndex: 1, pSize: 100, ...config })
   }
 
+  /** schoolInfo */
   async getSchool(params: SchoolInfoParam) {
     return this.schoolInfoRaw(params)
   }
 
+  /** schoolInfo */
   async getSchoolOne(params: SchoolInfoParam) {
     return firstOf(this.schoolInfoRaw(params))
   }
 
+  /** mealServiceDietInfo */
   async getMeal(params: MealServiceDietInfoParam) {
     return this.mealServiceDietInfoRaw(params)
   }
 
+  /** mealServiceDietInfo */
   async getMealOne(params: MealServiceDietInfoParam) {
     return firstOf(this.mealServiceDietInfoRaw(params))
   }
 
+  /** SchoolSchedule */
   async getSchedule(params: SchoolScheduleParam) {
     return this.SchoolScheduleRaw(params)
   }
 
+  /** SchoolSchedule */
   async getScheduleOne(params: SchoolScheduleParam) {
     return firstOf(this.SchoolScheduleRaw(params))
   }
 
+  /** acaInsTiInfo */
   async getAcademy(params: AcaInsTiInfoParam) {
     return this.acaInsTiInfoRaw(params)
   }
 
+  /** acaInsTiInfo */
   async getAcademyOne(params: AcaInsTiInfoParam) {
     return firstOf(this.acaInsTiInfoRaw(params))
   }
 
+  /** elsTimetable */
   async getElsTimetable(params: ElsTimetableParam) {
     return this.elsTimetableRaw(params)
   }
 
+  /** elsTimetable */
   async getElsTimetableOne(params: ElsTimetableParam) {
     return firstOf(this.elsTimetableRaw(params))
   }
 
+  /** misTimetable */
   async getMisTimetable(params: MisTimetableParam) {
     return this.misTimetableRaw(params)
   }
 
+  /** misTimetable */
   async getMisTimetableOne(params: MisTimetableParam) {
     return firstOf(this.misTimetableRaw(params))
   }
 
+  /** hisTimetable */
   async getHisTimetable(params: HisTimetableParam) {
     return this.hisTimetableRaw(params)
   }
 
+  /** hisTimetable */
   async getHisTimetableOne(params: HisTimetableParam) {
     return firstOf(this.hisTimetableRaw(params))
   }
 
+  /** spsTimetable */
   async getSpsTimetable(params: SpsTimetableParam) {
     return this.spsTimetableRaw(params)
   }
 
+  /** spsTimetable */
   async getSpsTimetableOne(params: SpsTimetableParam) {
     return firstOf(this.spsTimetableRaw(params))
   }
 
-  async getClassInfo(params: ClassInfoParam) {
+  /** classInfo */
+  async getClass(params: ClassInfoParam) {
     return this.classInfoRaw(params)
   }
 
-  async getClassInfoOne(params: ClassInfoParam) {
+  /** classInfo */
+  async getClassOne(params: ClassInfoParam) {
     return firstOf(this.classInfoRaw(params))
   }
 
-  async getSchoolMajorInfo(params: SchoolMajorinfoParam) {
+  /** schoolMajorinfo */
+  async getMajor(params: SchoolMajorinfoParam) {
     return this.schoolMajorinfoRaw(params)
   }
 
-  async getSchoolMajorInfoOne(params: SchoolMajorinfoParam) {
+  /** schoolMajorinfo */
+  async getMajorOne(params: SchoolMajorinfoParam) {
     return firstOf(this.schoolMajorinfoRaw(params))
   }
 }
