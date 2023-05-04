@@ -20,6 +20,8 @@ import type {
   SchoolMajorinfoResponse,
   SchoolScheduleParam,
   SchoolScheduleResponse,
+  SchulAflcoinfoParam,
+  SchulAflcoinfoResponse,
   SpsTimetableParam,
   SpsTimetableResponse,
 } from './types'
@@ -111,6 +113,10 @@ export class NeisRequest {
 
   protected async schoolMajorinfoRaw(params: SchoolMajorinfoParam) {
     return this.get<SchoolMajorinfoResponse>('schoolMajorinfo', params)
+  }
+
+  protected async schulAflcoinfoRaw(params: SchulAflcoinfoParam) {
+    return this.get<SchulAflcoinfoResponse>('schulAflcoinfo', params)
   }
 
   private async get<T>(endpoint: string, params: Params) {
