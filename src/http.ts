@@ -2,6 +2,8 @@ import { ErrorsMapping } from './errors'
 import type {
   AcaInsTiInfoParam,
   AcaInsTiInfoResponse,
+  ClassInfoParam,
+  ClassInfoResponse,
   ElsTimetableParam,
   ElsTimetableResponse,
   HisTimetableParam,
@@ -99,6 +101,10 @@ export class NeisRequest {
 
   protected async spsTimetableRaw(params: SpsTimetableParam) {
     return this.get<SpsTimetableResponse>('spsTimetable', params)
+  }
+
+  protected async classInfoRaw(params: ClassInfoParam) {
+    return this.get<ClassInfoResponse>('classInfo', params)
   }
 
   private async get<T>(endpoint: string, params: Params) {

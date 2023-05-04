@@ -122,6 +122,21 @@ export interface SpsTimetableParam extends ElsTimetableParam {
   readonly CLRM_NM?: string
 }
 
+export interface ClassInfoParam extends DefaultParamWithSchoolParam {
+  /** 학년도 */
+  readonly AY?: string
+  /** 학년 */
+  readonly GRADE?: string
+  /** 주야과정명 */
+  readonly DGHT_CRSE_SC_NM?: string
+  /** 학교과정명 */
+  readonly SCHUL_CRSE_SC_NM?: string
+  /** 계열명 */
+  readonly ORD_SC_NM?: string
+  /** 학과명 */
+  readonly DDDEP_NM?: string
+}
+
 export type Params =
   | SchoolInfoParam
   | MealServiceDietInfoParam
@@ -131,6 +146,7 @@ export type Params =
   | MisTimetableParam
   | HisTimetableParam
   | SpsTimetableParam
+  | ClassInfoParam
 
 interface BaseSchoolResponse {
   /** 시도교육청코드 */
@@ -331,4 +347,23 @@ export interface SpsTimetableResponse extends ElsTimetableResponse {
   readonly SCHUL_CRSE_SC_NM: string
   /** 강의실명 */
   readonly CLRM_NM: string
+}
+
+export interface ClassInfoResponse extends BaseSchoolResponse {
+  /** 학년도 */
+  readonly AY: string
+  /** 학년 */
+  readonly GRADE: string
+  /** 주야과정명 */
+  readonly DGHT_CRSE_SC_NM: string | null
+  /** 학교과정명 */
+  readonly SCHUL_CRSE_SC_NM: string
+  /** 계열명 */
+  readonly ORD_SC_NM: string | null
+  /** 학과명 */
+  readonly DDDEP_NM: string | null
+  /** 반명 */
+  readonly CLASS_NM: string
+  /** 수정일 */
+  readonly LOAD_DTM: string
 }

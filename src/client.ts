@@ -1,6 +1,7 @@
 import { NeisRequest } from './http'
 import type {
   AcaInsTiInfoParam,
+  ClassInfoParam,
   ElsTimetableParam,
   HisTimetableParam,
   MealServiceDietInfoParam,
@@ -78,6 +79,14 @@ export class Neis extends NeisRequest {
 
   async getSpsTimetableOne(params: SpsTimetableParam) {
     return firstOf(this.spsTimetableRaw(params))
+  }
+
+  async getClassInfo(params: ClassInfoParam) {
+    return this.classInfoRaw(params)
+  }
+
+  async getClassInfoOne(params: ClassInfoParam) {
+    return firstOf(this.classInfoRaw(params))
   }
 }
 
