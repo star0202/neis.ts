@@ -12,6 +12,7 @@ import type {
   SchoolScheduleParam,
   SchulAflcoinfoParam,
   SpsTimetableParam,
+  TiClrminfoParam,
 } from './types'
 
 export class Neis extends NeisRequest {
@@ -127,6 +128,16 @@ export class Neis extends NeisRequest {
   /** schulAflcoinfo */
   async getAflcoOne(params: SchulAflcoinfoParam) {
     return firstOf(this.schulAflcoinfoRaw(params))
+  }
+
+  /** tiClrminfo */
+  async getClrm(params: TiClrminfoParam) {
+    return this.tiClrminfoRaw(params)
+  }
+
+  /** tiClrminfo */
+  async getClrmOne(params: TiClrminfoParam) {
+    return firstOf(this.tiClrminfoRaw(params))
   }
 }
 

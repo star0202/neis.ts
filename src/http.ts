@@ -24,6 +24,8 @@ import type {
   SchulAflcoinfoResponse,
   SpsTimetableParam,
   SpsTimetableResponse,
+  TiClrminfoParam,
+  TiClrminfoResponse,
 } from './types'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import axios from 'axios'
@@ -117,6 +119,10 @@ export class NeisRequest {
 
   protected async schulAflcoinfoRaw(params: SchulAflcoinfoParam) {
     return this.get<SchulAflcoinfoResponse>('schulAflcoinfo', params)
+  }
+
+  protected async tiClrminfoRaw(params: TiClrminfoParam) {
+    return this.get<TiClrminfoResponse>('tiClrminfo', params)
   }
 
   private async get<T>(endpoint: string, params: Params) {

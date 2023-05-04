@@ -149,6 +149,23 @@ export interface SchulAflcoinfoParam extends DefaultParamWithSchoolParam {
   readonly DGHT_CRSE_SC_NM?: string
 }
 
+export interface TiClrminfoParam extends DefaultParamWithSchoolParam {
+  /** 학년도 */
+  readonly AY?: string
+  /** 학년 */
+  readonly GRADE?: string
+  /** 학기 */
+  readonly SEM?: string
+  /** 학교과정명 */
+  readonly SCHUL_CRSE_SC_NM?: string
+  /** 주야과정명 */
+  readonly DGHT_CRSE_SC_NM?: string
+  /** 계열명 */
+  readonly ORD_SC_NM?: string
+  /** 학과명 */
+  readonly DDDEP_NM?: string
+}
+
 export type Params =
   | SchoolInfoParam
   | MealServiceDietInfoParam
@@ -161,6 +178,7 @@ export type Params =
   | ClassInfoParam
   | SchoolMajorinfoParam
   | SchulAflcoinfoParam
+  | TiClrminfoParam
 
 interface BaseSchoolResponse {
   /** 시도교육청코드 */
@@ -398,6 +416,27 @@ export interface SchulAflcoinfoResponse extends BaseSchoolResponse {
   readonly DGHT_CRSE_SC_NM: string
   /** 계열명 */
   readonly ORD_SC_NM: string
+  /** 수정일 */
+  readonly LOAD_DTM: string
+}
+
+export interface TiClrminfoResponse extends BaseSchoolResponse {
+  /** 학년도 */
+  readonly AY: string
+  /** 학년 */
+  readonly GRADE: string
+  /** 학기 */
+  readonly SEM: string
+  /** 학교과정명 */
+  readonly SCHUL_CRSE_SC_NM: string
+  /** 주야과정명 */
+  readonly DGHT_CRSE_SC_NM: string
+  /** 계열명 */
+  readonly ORD_SC_NM: string
+  /** 학과명 */
+  readonly DDDEP_NM: string
+  /** 강의실명 */
+  readonly CLRM_NM: string
   /** 수정일 */
   readonly LOAD_DTM: string
 }
