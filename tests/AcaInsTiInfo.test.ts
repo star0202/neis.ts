@@ -2,7 +2,7 @@ import type { AcaInsTiInfoResponse } from '../src'
 import { AE, AN } from './constants'
 import { neis } from './utils'
 
-describe('Academy', () => {
+describe('AcaInsTiInfo', () => {
   it('should return AcaInsTiInfoResponse[]', async () => {
     const data = await neis.getAcademy({
       ATPT_OFCDC_SC_CODE: AE,

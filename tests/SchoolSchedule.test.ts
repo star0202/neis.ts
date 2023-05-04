@@ -2,7 +2,7 @@ import type { SchoolScheduleResponse } from '../src'
 import { AE, SE, YMD } from './constants'
 import { neis } from './utils'
 
-describe('Schedule', () => {
+describe('SchoolSchedule', () => {
   it('should return SchoolScheduleResponse[]', async () => {
     const data = await neis.getSchedule({
       ATPT_OFCDC_SC_CODE: AE,

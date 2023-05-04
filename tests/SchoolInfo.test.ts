@@ -2,7 +2,7 @@ import type { SchoolInfoResponse } from '../src'
 import { AE, SE } from './constants'
 import { neis } from './utils'
 
-describe('School', () => {
+describe('SchoolInfo', () => {
   it('should return SchoolInfoResponse[]', async () => {
     const data = await neis.getSchool({
       ATPT_OFCDC_SC_CODE: AE,
