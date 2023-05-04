@@ -8,6 +8,7 @@ import type {
   MisTimetableParam,
   NeisConfig,
   SchoolInfoParam,
+  SchoolMajorinfoParam,
   SchoolScheduleParam,
   SpsTimetableParam,
 } from './types'
@@ -87,6 +88,14 @@ export class Neis extends NeisRequest {
 
   async getClassInfoOne(params: ClassInfoParam) {
     return firstOf(this.classInfoRaw(params))
+  }
+
+  async getSchoolMajorInfo(params: SchoolMajorinfoParam) {
+    return this.schoolMajorinfoRaw(params)
+  }
+
+  async getSchoolMajorInfoOne(params: SchoolMajorinfoParam) {
+    return firstOf(this.schoolMajorinfoRaw(params))
   }
 }
 

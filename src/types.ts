@@ -137,6 +137,13 @@ export interface ClassInfoParam extends DefaultParamWithSchoolParam {
   readonly DDDEP_NM?: string
 }
 
+export interface SchoolMajorinfoParam extends DefaultParamWithSchoolParam {
+  /** 주야과정명 */
+  readonly DGHT_CRSE_SC_NM?: string
+  /** 계열명 */
+  readonly ORD_SC_NM?: string
+}
+
 export type Params =
   | SchoolInfoParam
   | MealServiceDietInfoParam
@@ -147,6 +154,7 @@ export type Params =
   | HisTimetableParam
   | SpsTimetableParam
   | ClassInfoParam
+  | SchoolMajorinfoParam
 
 interface BaseSchoolResponse {
   /** 시도교육청코드 */
@@ -364,6 +372,17 @@ export interface ClassInfoResponse extends BaseSchoolResponse {
   readonly DDDEP_NM: string | null
   /** 반명 */
   readonly CLASS_NM: string
+  /** 수정일 */
+  readonly LOAD_DTM: string
+}
+
+export interface SchoolMajorinfoResponse extends BaseSchoolResponse {
+  /** 주야과정명 */
+  readonly DGHT_CRSE_SC_NM: string
+  /** 계열명 */
+  readonly ORD_SC_NM: string
+  /** 학과명 */
+  readonly DDDEP_NM: string
   /** 수정일 */
   readonly LOAD_DTM: string
 }
