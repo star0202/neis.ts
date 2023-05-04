@@ -3,6 +3,7 @@
 ![License](https://img.shields.io/github/license/star0202/neis.ts?style=flat-square)
 
 NEIS Open API를 쉽게 사용하기 위한 TypeScript API Wrapper입니다.
+
 모든 엔드포인트가 래핑되어 있습니다.
 
 ## Installation
