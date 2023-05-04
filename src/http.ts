@@ -1,4 +1,4 @@
-import { ErrorsMapping } from './errors'
+import { ErrorsMapping, RequestTimeoutError } from './errors'
 import type {
   AcaInsTiInfoParam,
   AcaInsTiInfoResponse,
@@ -108,12 +108,13 @@ export class NeisRequest {
   }
 
   private async get<T>(endpoint: string, params: Params) {
-    return this.request<T>('GET', endpoint, params)
+    return this.request<T>('GET', endpoint, 5000, params)
   }
 
   private async request<T>(
     method: string,
     endpoint: string,
+    timeout: number,
     params: Params
   ): Promise<T[]> {
     const { key, type, ...restParams } = params
@@ -121,6 +122,7 @@ export class NeisRequest {
     const config: AxiosRequestConfig = {
       method: method,
       url: endpoint,
+      timeout: timeout,
       params: {
         KEY: key ?? this.key,
         Type: type ?? this.type,
@@ -132,17 +134,26 @@ export class NeisRequest {
 
     this.logger?.debug(`${method} /${config.url}`, config.params)
 
-    const { data } = await this.rest.request(config)
+    try {
+      const res = await this.rest.request(config)
+      const { data } = res
 
-    if (data.RESULT) {
-      const code = data.RESULT.CODE as keyof typeof ErrorsMapping
-      const err = new ErrorsMapping[code](code, data.RESULT.MESSAGE)
+      if (data.RESULT) {
+        const code = data.RESULT.CODE as keyof typeof ErrorsMapping
+        const err = new ErrorsMapping[code](code, data.RESULT.MESSAGE)
 
-      this.logger?.error(err)
+        this.logger?.error(err)
 
-      throw err
+        throw err
+      }
+
+      return Object.values((Object.values(data) as object[][])[0][1])[0] as T[]
+    } catch (err) {
+      const error = new RequestTimeoutError(timeout)
+
+      this.logger?.error(error)
+
+      throw error
     }
-
-    return Object.values((Object.values(data) as object[][])[0][1])[0] as T[]
   }
 }

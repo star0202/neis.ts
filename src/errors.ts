@@ -1,31 +1,40 @@
-abstract class NeisError extends Error {
+class NeisError extends Error {}
+
+export class RequestTimeoutError extends NeisError {
+  constructor(timeout: number) {
+    super(`Request timed out after ${timeout}ms`)
+    this.name = this.constructor.name
+  }
+}
+
+abstract class HTTPError extends NeisError {
   constructor(code: string, msg: string) {
     super(`${code} ${msg}`)
     this.name = this.constructor.name
   }
 }
 
-export class MissingRequiredValueError extends NeisError {}
+export class MissingRequiredValueError extends HTTPError {}
 
-export class AuthenticationError extends NeisError {}
+export class AuthenticationError extends HTTPError {}
 
-export class ServiceNotFoundError extends NeisError {}
+export class ServiceNotFoundError extends HTTPError {}
 
-export class InvalidLocationValueError extends NeisError {}
+export class InvalidLocationValueError extends HTTPError {}
 
-export class RequestLimitExceededError extends NeisError {}
+export class RequestLimitExceededError extends HTTPError {}
 
-export class DailyTrafficLimitExceededError extends NeisError {}
+export class DailyTrafficLimitExceededError extends HTTPError {}
 
-export class ServerError extends NeisError {}
+export class ServerError extends HTTPError {}
 
-export class DatabaseConnectionError extends NeisError {}
+export class DatabaseConnectionError extends HTTPError {}
 
-export class SQLStatementError extends NeisError {}
+export class SQLStatementError extends HTTPError {}
 
-export class LimitUseAuthenticationKeyError extends NeisError {}
+export class LimitUseAuthenticationKeyError extends HTTPError {}
 
-export class DataNotFoundError extends NeisError {}
+export class DataNotFoundError extends HTTPError {}
 
 export const ErrorsMapping = {
   'ERROR-300': MissingRequiredValueError,
@@ -39,4 +48,4 @@ export const ErrorsMapping = {
   'ERROR-601': SQLStatementError,
   'INFO-300': LimitUseAuthenticationKeyError,
   'INFO-200': DataNotFoundError,
-} satisfies Record<string, typeof NeisError>
+} satisfies Record<string, typeof HTTPError>
