@@ -30,7 +30,7 @@ import { Logger } from 'tslog'
 
 const logger = new Logger()
 const neis = new Neis({
-  KEY: 'API KEY',
+  key: 'API KEY',
   Type: 'json',
   pIndex: 1,
   pSize: 100,
