@@ -49,7 +49,7 @@
     "params": "ts-node scripts/paramParser.ts",
     "responses": "ts-node scripts/responseParser.ts"
   },
-  "packageManager": "pnpm@7.32.4",
+  "packageManager": "pnpm@8.5.1",
   "release": {
     "branches": [
       "stable",
