@@ -1,3 +1,3 @@
-import { Neis } from '../src'
+import Neis from '../src'
 
 export const neis = new Neis()
