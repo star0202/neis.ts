@@ -138,9 +138,9 @@ export class NeisRequest {
     const { key, type, ...restParams } = params
 
     const config: AxiosRequestConfig = {
-      method: method,
+      method,
       url: endpoint,
-      timeout: timeout,
+      timeout,
       params: {
         KEY: key ?? this.key,
         Type: type ?? this.type,
