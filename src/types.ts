@@ -3,6 +3,8 @@ import type { Logger } from 'tslog'
 export interface NeisConfig extends DefaultParam {
   /** tslog Logger */
   readonly logger?: Logger<unknown>
+  /** Timeout in milliseconds */
+  readonly timeout?: number
 }
 
 interface DefaultParam {

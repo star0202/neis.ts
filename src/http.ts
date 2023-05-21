@@ -41,6 +41,7 @@ export class NeisRequest {
   private readonly type: 'json' | 'xml'
   private readonly pIndex: number
   private readonly pSize: number
+  private readonly timeout: number
 
   constructor(
     config: NeisConfig & Required<Pick<NeisConfig, 'type' | 'pIndex' | 'pSize'>>
@@ -53,6 +54,8 @@ export class NeisRequest {
     this.type = config.type
     this.pIndex = config.pIndex
     this.pSize = config.pSize
+
+    this.timeout = config.timeout ?? 5000
 
     this.logger = config.logger?.getSubLogger({ name: 'HTTP' })
 
@@ -126,7 +129,7 @@ export class NeisRequest {
   }
 
   private async get<T>(endpoint: string, params: Params) {
-    return this.request<T>('GET', endpoint, 5000, params)
+    return this.request<T>('GET', endpoint, this.timeout, params)
   }
 
   private async request<T>(
