@@ -172,6 +172,6 @@ export class NeisRequest {
       throw err
     }
 
-    return Object.values((Object.values(data) as object[][])[0][1])[0] as T[]
+    return Object.values((Object.values(data) as object[][])[0][1])[0]
   }
 }
