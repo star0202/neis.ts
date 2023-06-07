@@ -45,9 +45,7 @@
     "test": "jest",
     "build": "rimraf dist && tsc",
     "release": "semantic-release",
-    "prepack": "pnpm build",
-    "params": "ts-node scripts/paramParser.ts",
-    "responses": "ts-node scripts/responseParser.ts"
+    "prepack": "pnpm build"
   },
   "packageManager": "pnpm@8.5.1",
   "release": {
