@@ -41,7 +41,7 @@
     "korean"
   ],
   "scripts": {
-    "lint": "eslint scripts src tests --ignore-path .gitignore",
+    "lint": "eslint src tests --ignore-path .gitignore",
     "test": "jest",
     "build": "rimraf dist && tsc",
     "release": "semantic-release",
