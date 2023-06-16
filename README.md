@@ -24,15 +24,10 @@ pnpm add neis.ts  # pnpm
 import Neis from 'neis.ts'
 import { Logger } from 'tslog'
 
-const logger = new Logger()
 const neis = new Neis({
   key: 'API KEY',
-  type: 'json',
-  pIndex: 1,
-  pSize: 100,
   logger: new Logger(),
 })
-
 
 neis
   .getSchool({
