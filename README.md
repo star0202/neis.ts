@@ -6,76 +6,47 @@ NEIS Open API를 쉽게 사용하기 위한 TypeScript API Wrapper입니다.
 
 모든 엔드포인트가 래핑되어 있습니다.
 
-## Installation
-
-Install from [npm](https://www.npmjs.com/package/neis.ts)
+## 설치
 
 ```bash
-npm install neis.ts
-# or
-yarn add neis.ts
-# or
-pnpm add neis.ts
+npm install neis.ts  # npm
+yarn add neis.ts  # yarn
+pnpm add neis.ts  # pnpm
 ```
 
-## Optional Dependencies
+## 선택적 종속성
 
 - [tslog](https://www.npmjs.com/package/tslog) (로깅)
 
-## Usage
+## 사용법
 
 ```ts
-import { Neis } from 'neis.ts'
+import Neis from 'neis.ts'
 import { Logger } from 'tslog'
 
 const logger = new Logger()
 const neis = new Neis({
   key: 'API KEY',
-  Type: 'json',
+  type: 'json',
   pIndex: 1,
   pSize: 100,
-  logger: logger.getSubLogger({
-    name: 'neis',
-  }),
+  logger: new Logger(),
 })
 
-;(async () => {
-  // 학교
-  const school = await neis.getSchool({
-    // or getSchoolOne
+
+neis
+  .getSchool({
     ATPT_OFCDC_SC_CODE: '시도교육청코드',
     SD_SCHUL_CODE: '표준학교코드',
   })
-
-  // 급식
-  const meal = await neis.getMeal({
-    ATPT_OFCDC_SC_CODE: '시도교육청코드',
-    SD_SCHUL_CODE: '표준학교코드',
-    MLSV_YMD: '날짜',
+  .then((res) => {
+    console.log(res)
   })
-
-  // 학사일정
-  const schedule = await neis.getSchedule({
-    ATPT_OFCDC_SC_CODE: '시도교육청코드',
-    SD_SCHUL_CODE: '표준학교코드',
-    AA_YMD: '날짜',
+  .catch((err) => {
+    console.error(err)
   })
-
-  // 학원 / 교습소
-  const academy = await neis.getAcademy({
-    ATPT_OFCDC_SC_CODE: '시도교육청코드',
-    ACA_ASNUM: '학원지정번호',
-  })
-
-  // and more
-
-  console.log(school)
-  console.log(meal)
-  console.log(schedule)
-  console.log(academy)
-})()
 ```
 
-## Official API Docs by NEIS
+### NEIS 공식 API 문서
 
 - [교육정보 공공데이터포털](https://open.neis.go.kr/portal/guide/apiIntroPage.do)
