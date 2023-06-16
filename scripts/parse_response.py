@@ -13,7 +13,7 @@ items = [
 print(items)
 
 regex = r"^(\d*) (.*) (.*)$"
-result = []
+result: list[str] = []
 
 for data in items:
     matches = match(regex, data)

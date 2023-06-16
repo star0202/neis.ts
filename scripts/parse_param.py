@@ -13,7 +13,7 @@ items = [
 print(items)
 
 regex = r"^(.*) (.*)\((필수|선택)\) (.*)$"
-result = []
+result: list[str] = []
 
 
 def string_to_type(name: str) -> str:
