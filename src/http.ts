@@ -96,32 +96,36 @@ export class NeisRequest {
     return this.get<AcaInsTiInfoResponse>('acaInsTiInfo', params)
   }
 
-  protected async elsTimetableRaw(params: ElsTimetableParam, legacy: boolean) {
-    return this.get<ElsTimetableResponse>(
-      `elsTimetable${legacy ? 'bgs' : ''}`,
-      params
-    )
+  protected async elsTimetableRaw(params: ElsTimetableParam) {
+    return this.get<ElsTimetableResponse>('elsTimetable', params)
   }
 
-  protected async misTimetableRaw(params: MisTimetableParam, legacy: boolean) {
-    return this.get<MisTimetableResponse>(
-      `misTimetable${legacy ? 'bgs' : ''}`,
-      params
-    )
+  protected async elsTimetablebgsRaw(params: ElsTimetableParam) {
+    return this.get<ElsTimetableResponse>('elsTimetablebgs', params)
   }
 
-  protected async hisTimetableRaw(params: HisTimetableParam, legacy: boolean) {
-    return this.get<HisTimetableResponse>(
-      `hisTimetable${legacy ? 'bgs' : ''}`,
-      params
-    )
+  protected async misTimetableRaw(params: MisTimetableParam) {
+    return this.get<MisTimetableResponse>('misTimetable', params)
   }
 
-  protected async spsTimetableRaw(params: SpsTimetableParam, legacy: boolean) {
-    return this.get<SpsTimetableResponse>(
-      `spsTimetable${legacy ? 'bgs' : ''}`,
-      params
-    )
+  protected async misTimetablebgsRaw(params: MisTimetableParam) {
+    return this.get<MisTimetableResponse>('misTimetablebgs', params)
+  }
+
+  protected async hisTimetableRaw(params: HisTimetableParam) {
+    return this.get<HisTimetableResponse>('hisTimetable', params)
+  }
+
+  protected async hisTimetablebgsRaw(params: HisTimetableParam) {
+    return this.get<HisTimetableResponse>('hisTimetablebgs', params)
+  }
+
+  protected async spsTimetableRaw(params: SpsTimetableParam) {
+    return this.get<SpsTimetableResponse>('spsTimetable', params)
+  }
+
+  protected async spsTimetablebgsRaw(params: SpsTimetableParam) {
+    return this.get<SpsTimetableResponse>('spsTimetablebgs', params)
   }
 
   protected async classInfoRaw(params: ClassInfoParam) {

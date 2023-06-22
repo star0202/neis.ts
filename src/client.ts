@@ -63,42 +63,50 @@ export class Neis extends NeisRequest {
 
   /** elsTimetable */
   async getElsTimetable(params: ElsTimetableParam) {
-    return this.elsTimetableRaw(params, isLegacyTimetable(params))
+    return isLegacyTimetable(params)
+      ? this.elsTimetablebgsRaw(params)
+      : this.elsTimetableRaw(params)
   }
 
   /** elsTimetable */
   async getElsTimetableOne(params: ElsTimetableParam) {
-    return firstOf(this.elsTimetableRaw(params, isLegacyTimetable(params)))
+    return firstOf(this.getElsTimetable(params))
   }
 
   /** misTimetable */
   async getMisTimetable(params: MisTimetableParam) {
-    return this.misTimetableRaw(params, isLegacyTimetable(params))
+    return isLegacyTimetable(params)
+      ? this.misTimetablebgsRaw(params)
+      : this.misTimetableRaw(params)
   }
 
   /** misTimetable */
   async getMisTimetableOne(params: MisTimetableParam) {
-    return firstOf(this.misTimetableRaw(params, isLegacyTimetable(params)))
+    return firstOf(this.getMisTimetable(params))
   }
 
   /** hisTimetable */
   async getHisTimetable(params: HisTimetableParam) {
-    return this.hisTimetableRaw(params, isLegacyTimetable(params))
+    return isLegacyTimetable(params)
+      ? this.hisTimetablebgsRaw(params)
+      : this.hisTimetableRaw(params)
   }
 
   /** hisTimetable */
   async getHisTimetableOne(params: HisTimetableParam) {
-    return firstOf(this.hisTimetableRaw(params, isLegacyTimetable(params)))
+    return firstOf(this.getHisTimetable(params))
   }
 
   /** spsTimetable */
   async getSpsTimetable(params: SpsTimetableParam) {
-    return this.spsTimetableRaw(params, isLegacyTimetable(params))
+    return isLegacyTimetable(params)
+      ? this.spsTimetablebgsRaw(params)
+      : this.spsTimetableRaw(params)
   }
 
   /** spsTimetable */
   async getSpsTimetableOne(params: SpsTimetableParam) {
-    return firstOf(this.spsTimetableRaw(params, isLegacyTimetable(params)))
+    return firstOf(this.getSpsTimetable(params))
   }
 
   /** classInfo */
