@@ -13,6 +13,7 @@ import type {
   SchulAflcoinfoParam,
   SpsTimetableParam,
   TiClrminfoParam,
+  TimetableParams,
 } from './types'
 
 export class Neis extends NeisRequest {
@@ -62,42 +63,42 @@ export class Neis extends NeisRequest {
 
   /** elsTimetable */
   async getElsTimetable(params: ElsTimetableParam) {
-    return this.elsTimetableRaw(params)
+    return this.elsTimetableRaw(params, isLegacyTimetable(params))
   }
 
   /** elsTimetable */
   async getElsTimetableOne(params: ElsTimetableParam) {
-    return firstOf(this.elsTimetableRaw(params))
+    return firstOf(this.elsTimetableRaw(params, isLegacyTimetable(params)))
   }
 
   /** misTimetable */
   async getMisTimetable(params: MisTimetableParam) {
-    return this.misTimetableRaw(params)
+    return this.misTimetableRaw(params, isLegacyTimetable(params))
   }
 
   /** misTimetable */
   async getMisTimetableOne(params: MisTimetableParam) {
-    return firstOf(this.misTimetableRaw(params))
+    return firstOf(this.misTimetableRaw(params, isLegacyTimetable(params)))
   }
 
   /** hisTimetable */
   async getHisTimetable(params: HisTimetableParam) {
-    return this.hisTimetableRaw(params)
+    return this.hisTimetableRaw(params, isLegacyTimetable(params))
   }
 
   /** hisTimetable */
   async getHisTimetableOne(params: HisTimetableParam) {
-    return firstOf(this.hisTimetableRaw(params))
+    return firstOf(this.hisTimetableRaw(params, isLegacyTimetable(params)))
   }
 
   /** spsTimetable */
   async getSpsTimetable(params: SpsTimetableParam) {
-    return this.spsTimetableRaw(params)
+    return this.spsTimetableRaw(params, isLegacyTimetable(params))
   }
 
   /** spsTimetable */
   async getSpsTimetableOne(params: SpsTimetableParam) {
-    return firstOf(this.spsTimetableRaw(params))
+    return firstOf(this.spsTimetableRaw(params, isLegacyTimetable(params)))
   }
 
   /** classInfo */
@@ -142,3 +143,8 @@ export class Neis extends NeisRequest {
 }
 
 const firstOf = <T>(promise: Promise<T[]>) => promise.then((res) => res[0])
+
+const isLegacyTimetable = (params: TimetableParams) =>
+  Number(params.AY) < 2023 ||
+  Number(params.TI_FROM_YMD?.slice(0, 4)) < 2023 ||
+  Number(params.TI_TO_YMD?.slice(0, 4)) < 2023

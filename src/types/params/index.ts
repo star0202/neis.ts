@@ -38,6 +38,12 @@ export type Params =
   | SchulAflcoinfoParam
   | TiClrminfoParam
 
+export type TimetableParams =
+  | ElsTimetableParam
+  | MisTimetableParam
+  | HisTimetableParam
+  | SpsTimetableParam
+
 export interface DefaultParam {
   /** 인증키 */
   readonly key?: string
