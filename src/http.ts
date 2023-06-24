@@ -1,4 +1,4 @@
-import { ErrorsMapping, RequestTimeoutError } from './errors'
+import { ErrorCode, ErrorsMapping, RequestTimeoutError } from './errors'
 import type {
   AcaInsTiInfoParam,
   AcaInsTiInfoResponse,
@@ -180,7 +180,7 @@ export class NeisRequest {
     })
 
     if (data.RESULT) {
-      const code = data.RESULT.CODE as keyof typeof ErrorsMapping
+      const code = data.RESULT.CODE as ErrorCode
       const err = new ErrorsMapping[code](code, data.RESULT.MESSAGE)
 
       this.logger?.error(err)

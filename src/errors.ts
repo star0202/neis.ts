@@ -36,6 +36,19 @@ export class LimitUseAuthenticationKeyError extends HTTPError {}
 
 export class DataNotFoundError extends HTTPError {}
 
+export type ErrorCode =
+  | 'ERROR-300'
+  | 'ERROR-290'
+  | 'ERROR-310'
+  | 'ERROR-333'
+  | 'ERROR-336'
+  | 'ERROR-337'
+  | 'ERROR-500'
+  | 'ERROR-600'
+  | 'ERROR-601'
+  | 'INFO-300'
+  | 'INFO-200'
+
 export const ErrorsMapping = {
   'ERROR-300': MissingRequiredValueError,
   'ERROR-290': AuthenticationError,
@@ -48,4 +61,4 @@ export const ErrorsMapping = {
   'ERROR-601': SQLStatementError,
   'INFO-300': LimitUseAuthenticationKeyError,
   'INFO-200': DataNotFoundError,
-} satisfies Record<string, typeof HTTPError>
+} satisfies Record<ErrorCode, typeof HTTPError>
