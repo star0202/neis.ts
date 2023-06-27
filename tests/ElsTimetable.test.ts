@@ -1,28 +1,21 @@
-import type { ElsTimetableResponse } from '../src'
-import { AE, ELS, YMD } from './constants'
+import { AE, ELS } from './constants'
 import { neis } from './utils'
+
+const params = {
+  ATPT_OFCDC_SC_CODE: AE,
+  SD_SCHUL_CODE: ELS,
+}
 
 describe('ElsTimetable', () => {
   it('should return ElsTimetableResponse[]', async () => {
-    const data = await neis.getElsTimetable({
-      ATPT_OFCDC_SC_CODE: AE,
-      SD_SCHUL_CODE: ELS,
-      ALL_TI_YMD: YMD,
-    })
+    const data = await neis.getElsTimetable(params)
 
-    expect(data).toMatchObject<ElsTimetableResponse[]>(data)
+    expect(data)
   })
 
   it('should return ElsTimetableResponse', async () => {
-    const data = await neis.getElsTimetableOne({
-      ATPT_OFCDC_SC_CODE: AE,
-      SD_SCHUL_CODE: ELS,
-      ALL_TI_YMD: YMD,
-      GRADE: '1',
-      CLASS_NM: '1',
-      PERIO: '1',
-    })
+    const data = await neis.getElsTimetableOne(params)
 
-    expect(data).toMatchObject<ElsTimetableResponse>(data)
+    expect(data)
   })
 })

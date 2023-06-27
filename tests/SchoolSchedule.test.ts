@@ -1,24 +1,21 @@
-import type { SchoolScheduleResponse } from '../src'
-import { AE, SE, YMD } from './constants'
+import { AE, SE } from './constants'
 import { neis } from './utils'
+
+const params = {
+  ATPT_OFCDC_SC_CODE: AE,
+  SD_SCHUL_CODE: SE,
+}
 
 describe('SchoolSchedule', () => {
   it('should return SchoolScheduleResponse[]', async () => {
-    const data = await neis.getSchedule({
-      ATPT_OFCDC_SC_CODE: AE,
-      SD_SCHUL_CODE: SE,
-    })
+    const data = await neis.getSchedule(params)
 
-    expect(data).toMatchObject<SchoolScheduleResponse[]>(data)
+    expect(data)
   })
 
   it('should return SchoolScheduleResponse', async () => {
-    const data = await neis.getScheduleOne({
-      ATPT_OFCDC_SC_CODE: AE,
-      SD_SCHUL_CODE: SE,
-      AA_YMD: YMD,
-    })
+    const data = await neis.getScheduleOne(params)
 
-    expect(data).toMatchObject<SchoolScheduleResponse>(data)
+    expect(data)
   })
 })

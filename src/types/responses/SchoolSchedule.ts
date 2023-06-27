@@ -18,13 +18,13 @@ export interface SchoolScheduleResponse extends BaseSchoolResponse {
   /** 1학년행사여부 */
   readonly ONE_GRADE_EVENT_YN: string
   /** 2학년행사여부 */
-  readonly TWO_GRADE_EVENT_YN: string
+  readonly TW_GRADE_EVENT_YN: string
   /** 3학년행사여부 */
   readonly THREE_GRADE_EVENT_YN: string
   /** 4학년행사여부 */
-  readonly FOUR_GRADE_EVENT_YN: string
+  readonly FR_GRADE_EVENT_YN: string
   /** 5학년행사여부 */
-  readonly FIVE_GRADE_EVENT_YN: string
+  readonly FIV_GRADE_EVENT_YN: string
   /** 6학년행사여부 */
   readonly SIX_GRADE_EVENT_YN: string
   /** 수정일 */

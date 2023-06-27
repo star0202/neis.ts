@@ -8,7 +8,7 @@ export interface MealServiceDietInfoResponse extends BaseSchoolResponse {
   /** 급식일자 */
   readonly MLSV_YMD: string
   /** 급식인원수 */
-  readonly MLSV_FGR: string
+  readonly MLSV_FGR: number
   /** 요리명 */
   readonly DDISH_NM: string
   /** 원산지정보 */

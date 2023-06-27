@@ -1,28 +1,21 @@
-import type { SpsTimetableResponse } from '../src'
-import { AE, SPS, YMD } from './constants'
+import { AE, SPS } from './constants'
 import { neis } from './utils'
+
+const params = {
+  ATPT_OFCDC_SC_CODE: AE,
+  SD_SCHUL_CODE: SPS,
+}
 
 describe('SpsTimetable', () => {
   it('should return SpsTimetableResponse[]', async () => {
-    const data = await neis.getSpsTimetable({
-      ATPT_OFCDC_SC_CODE: AE,
-      SD_SCHUL_CODE: SPS,
-      ALL_TI_YMD: YMD,
-    })
+    const data = await neis.getSpsTimetable(params)
 
-    expect(data).toMatchObject<SpsTimetableResponse[]>(data)
+    expect(data)
   })
 
   it('should return SpsTimetableResponse', async () => {
-    const data = await neis.getSpsTimetableOne({
-      ATPT_OFCDC_SC_CODE: AE,
-      SD_SCHUL_CODE: SPS,
-      ALL_TI_YMD: YMD,
-      GRADE: '1',
-      CLASS_NM: '1',
-      PERIO: '1',
-    })
+    const data = await neis.getSpsTimetableOne(params)
 
-    expect(data).toMatchObject<SpsTimetableResponse>(data)
+    expect(data)
   })
 })

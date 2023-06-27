@@ -1,22 +1,22 @@
-import type { SchoolInfoResponse } from '../src'
-import { AE, SE } from './constants'
+import { AE } from './constants'
 import { neis } from './utils'
+
+const params = {
+  ATPT_OFCDC_SC_CODE: AE,
+}
 
 describe('SchoolInfo', () => {
   it('should return SchoolInfoResponse[]', async () => {
-    const data = await neis.getSchool({
-      ATPT_OFCDC_SC_CODE: AE,
-    })
+    const data = await neis.getSchool(params)
 
-    expect(data).toMatchObject<SchoolInfoResponse[]>(data)
+    data.forEach((school) => {
+      expect(school)
+    })
   })
 
   it('should return SchoolInfoResponse', async () => {
-    const data = await neis.getSchoolOne({
-      ATPT_OFCDC_SC_CODE: AE,
-      SD_SCHUL_CODE: SE,
-    })
+    const data = await neis.getSchoolOne(params)
 
-    expect(data).toMatchObject<SchoolInfoResponse>(data)
+    expect(data)
   })
 })

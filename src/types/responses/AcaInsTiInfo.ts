@@ -22,15 +22,15 @@ export interface AcaInsTiInfoResponse {
   /** 휴원종료일자 */
   readonly CAA_END_YMD: string | null
   /** 정원합계 */
-  readonly TOFOR_SMTOT: string
+  readonly TOFOR_SMTOT: number
   /** 일시수용능력인원합계 */
-  readonly DTM_RCPTN_ABLTY_NMPR_SMTOT: string
+  readonly DTM_RCPTN_ABLTY_NMPR_SMTOT: number
   /** 분야명 */
   readonly REALM_SC_NM: string
   /** 교습계열명 */
   readonly LE_ORD_NM: string
   /** 교습과정목록명 */
-  readonly LE_CRSE_LIST_NM: string
+  readonly LE_CRSE_LIST_NM: string | null
   /** 교습과정명 */
   readonly LE_CRSE_NM: string
   /** 인당수강료내용 */

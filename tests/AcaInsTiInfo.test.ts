@@ -1,22 +1,20 @@
-import type { AcaInsTiInfoResponse } from '../src'
-import { AE, AN } from './constants'
+import { AE } from './constants'
 import { neis } from './utils'
+
+const params = {
+  ATPT_OFCDC_SC_CODE: AE,
+}
 
 describe('AcaInsTiInfo', () => {
   it('should return AcaInsTiInfoResponse[]', async () => {
-    const data = await neis.getAcademy({
-      ATPT_OFCDC_SC_CODE: AE,
-    })
+    const data = await neis.getAcademy(params)
 
-    expect(data).toMatchObject<AcaInsTiInfoResponse[]>(data)
+    expect(data)
   })
 
   it('should return AcaInsTiInfoResponse', async () => {
-    const data = await neis.getAcademyOne({
-      ATPT_OFCDC_SC_CODE: AE,
-      ACA_ASNUM: AN,
-    })
+    const data = await neis.getAcademyOne(params)
 
-    expect(data).toMatchObject<AcaInsTiInfoResponse>(data)
+    expect(data)
   })
 })

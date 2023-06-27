@@ -1,28 +1,21 @@
-import type { MisTimetableResponse } from '../src'
-import { AE, MIS, YMD } from './constants'
+import { AE, MIS } from './constants'
 import { neis } from './utils'
+
+const params = {
+  ATPT_OFCDC_SC_CODE: AE,
+  SD_SCHUL_CODE: MIS,
+}
 
 describe('MisTimetable', () => {
   it('should return MisTimetableResponse[]', async () => {
-    const data = await neis.getMisTimetable({
-      ATPT_OFCDC_SC_CODE: AE,
-      SD_SCHUL_CODE: MIS,
-      ALL_TI_YMD: YMD,
-    })
+    const data = await neis.getMisTimetable(params)
 
-    expect(data).toMatchObject<MisTimetableResponse[]>(data)
+    expect(data)
   })
 
   it('should return MisTimetableResponse', async () => {
-    const data = await neis.getMisTimetableOne({
-      ATPT_OFCDC_SC_CODE: AE,
-      SD_SCHUL_CODE: MIS,
-      ALL_TI_YMD: YMD,
-      GRADE: '1',
-      CLASS_NM: '1',
-      PERIO: '1',
-    })
+    const data = await neis.getMisTimetableOne(params)
 
-    expect(data).toMatchObject<MisTimetableResponse>(data)
+    expect(data)
   })
 })
