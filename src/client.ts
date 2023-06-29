@@ -154,5 +154,6 @@ const firstOf = <T>(promise: Promise<T[]>) => promise.then((res) => res[0])
 
 const isLegacyTimetable = (params: TimetableParams) =>
   Number(params.AY) < 2023 ||
+  Number(params.ALL_TI_YMD?.slice(0, 4)) < 2023 ||
   Number(params.TI_FROM_YMD?.slice(0, 4)) < 2023 ||
   Number(params.TI_TO_YMD?.slice(0, 4)) < 2023
