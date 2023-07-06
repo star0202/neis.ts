@@ -8,7 +8,7 @@ export interface SchoolInfoParam extends DefaultParam {
   /** 학교명 */
   readonly SCHUL_NM?: string
   /** 학교종류명 */
-  readonly SCHUL_KND_SC_NM?: string
+  readonly SCHUL_KND_SC_NM?: '초등학교' | '중학교' | '고등학교' | '특수학교'
   /** 소재지명 */
   readonly LCTN_SC_NM?: string
   /** 설립명 */
