@@ -5,6 +5,7 @@ import type {
   AcaInsTiInfoResponse,
   ClassInfoParam,
   ClassInfoResponse,
+  DefaultParam,
   ElsTimetableParam,
   ElsTimetableResponse,
   HisTimetableParam,
@@ -39,10 +40,8 @@ export default class NeisRequest {
 
   private readonly logger?: Logger<unknown>
 
-  private readonly key?: string
-  private readonly type: 'json' | 'xml'
-  private readonly pIndex: number
-  private readonly pSize: number
+  private readonly params: DefaultParam
+
   private readonly timeout: number
 
   constructor(config: NeisRequestConfig) {
@@ -50,33 +49,38 @@ export default class NeisRequest {
       baseURL: this.baseURL,
     })
 
-    this.key = config.key
-    this.type = config.type
-    this.pIndex = config.pIndex
-    this.pSize = config.pSize
-
     this.timeout = config.timeout ?? 5000
 
     this.logger = config.logger?.getSubLogger({ name: 'HTTP' })
 
-    if (!this.key) {
+    let pIndex = config.pIndex
+    let pSize = config.pSize
+
+    if (!config.key) {
       this.logger?.warn('No key provided, using a sample key.')
 
-      if (this.pIndex !== 1) {
+      if (config.pIndex !== 1) {
         this.logger?.warn(
-          `Using a sample key, pIndex is fixed to 1 from ${this.pIndex}.`
+          `Using a sample key, pIndex is fixed to 1 from ${config.pIndex}.`
         )
 
-        this.pIndex = 1
+        pIndex = 1
       }
 
-      if (this.pSize !== 5) {
+      if (config.pSize !== 5) {
         this.logger?.warn(
-          `Using a sample key, pSize is fixed to 5 from ${this.pSize}.`
+          `Using a sample key, pSize is fixed to 5 from ${config.pSize}.`
         )
 
-        this.pSize = 5
+        pSize = 5
       }
+    }
+
+    this.params = {
+      key: config.key,
+      type: config.type,
+      pIndex,
+      pSize,
     }
   }
 
@@ -154,18 +158,13 @@ export default class NeisRequest {
     timeout: number,
     params: Params
   ): Promise<T[]> {
-    const { key, type, ...restParams } = params
-
     const config: AxiosRequestConfig = {
       method,
       url: endpoint,
       timeout,
       params: {
-        KEY: key ?? this.key,
-        Type: type ?? this.type,
-        pIndex: this.pIndex,
-        pSize: this.pSize,
-        ...restParams,
+        ...this.params,
+        ...params,
       },
     }
 
