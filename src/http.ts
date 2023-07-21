@@ -1,4 +1,5 @@
-import { ErrorCode, ErrorsMapping, RequestTimeoutError } from './errors'
+import { ErrorsMapping, RequestTimeoutError } from './errors'
+import type { ErrorCode } from './errors'
 import type {
   AcaInsTiInfoParam,
   AcaInsTiInfoResponse,
