@@ -1,4 +1,4 @@
-import { NeisRequest } from './http'
+import NeisRequest from './http'
 import type {
   AcaInsTiInfoParam,
   ClassInfoParam,

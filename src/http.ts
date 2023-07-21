@@ -32,7 +32,7 @@ import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import type { Logger } from 'tslog'
 
-export class NeisRequest {
+export default class NeisRequest {
   private readonly rest: AxiosInstance
   private readonly baseURL = 'https://open.neis.go.kr/hub'
 
