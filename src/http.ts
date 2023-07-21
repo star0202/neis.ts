@@ -12,7 +12,7 @@ import type {
   MealServiceDietInfoResponse,
   MisTimetableParam,
   MisTimetableResponse,
-  NeisConfig,
+  NeisRequestConfig,
   Params,
   SchoolInfoParam,
   SchoolInfoResponse,
@@ -43,9 +43,7 @@ export class NeisRequest {
   private readonly pSize: number
   private readonly timeout: number
 
-  constructor(
-    config: NeisConfig & Required<Pick<NeisConfig, 'type' | 'pIndex' | 'pSize'>>
-  ) {
+  constructor(config: NeisRequestConfig) {
     this.rest = axios.create({
       baseURL: this.baseURL,
     })

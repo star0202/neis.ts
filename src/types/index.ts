@@ -10,3 +10,6 @@ export type NeisConfig = {
   /** Timeout in milliseconds */
   readonly timeout?: number
 } & DefaultParam
+
+export type NeisRequestConfig = NeisConfig &
+  Required<Pick<NeisConfig, 'type' | 'pIndex' | 'pSize'>>
