@@ -1,6 +1,6 @@
-import { BaseSchoolResponse } from '.'
+import type { BaseSchoolResponse } from '.'
 
-export interface TiClrminfoResponse extends BaseSchoolResponse {
+export type TiClrminfoResponse = {
   /** 학년도 */
   readonly AY: string
   /** 학년 */
@@ -19,4 +19,4 @@ export interface TiClrminfoResponse extends BaseSchoolResponse {
   readonly CLRM_NM: string
   /** 수정일 */
   readonly LOAD_DTM: string
-}
+} & BaseSchoolResponse

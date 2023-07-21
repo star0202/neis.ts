@@ -1,6 +1,6 @@
-import { DefaultParamWithSchoolParam } from '.'
+import type { DefaultParamWithSchoolParam } from '.'
 
-export interface SchoolScheduleParam extends DefaultParamWithSchoolParam {
+export type SchoolScheduleParam = {
   /** 주야과정명 */
   readonly DGHT_CRSE_SC_NM?: string
   /** 학교과정명 */
@@ -11,4 +11,4 @@ export interface SchoolScheduleParam extends DefaultParamWithSchoolParam {
   readonly AA_FROM_YMD?: string
   /** 학사종료일자 */
   readonly AA_TO_YMD?: string
-}
+} & DefaultParamWithSchoolParam

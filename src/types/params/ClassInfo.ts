@@ -1,6 +1,6 @@
-import { DefaultParamWithSchoolParam } from '.'
+import type { DefaultParamWithSchoolParam } from '.'
 
-export interface ClassInfoParam extends DefaultParamWithSchoolParam {
+export type ClassInfoParam = {
   /** 학년도 */
   readonly AY?: string
   /** 학년 */
@@ -13,4 +13,4 @@ export interface ClassInfoParam extends DefaultParamWithSchoolParam {
   readonly ORD_SC_NM?: string
   /** 학과명 */
   readonly DDDEP_NM?: string
-}
+} & DefaultParamWithSchoolParam

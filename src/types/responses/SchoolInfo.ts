@@ -1,6 +1,6 @@
-import { BaseSchoolResponse } from '.'
+import type { BaseSchoolResponse } from '.'
 
-export interface SchoolInfoResponse extends BaseSchoolResponse {
+export type SchoolInfoResponse = {
   /** 영문학교명 */
   readonly ENG_SCHUL_NM: string
   /** 학교종류명 */
@@ -43,4 +43,4 @@ export interface SchoolInfoResponse extends BaseSchoolResponse {
   readonly FOAS_MEMRD: string
   /** 수정일 */
   readonly LOAD_DTM: string
-}
+} & BaseSchoolResponse

@@ -1,8 +1,8 @@
-import { ElsTimetableParam } from './ElsTimetable'
+import type { ElsTimetableParam } from './ElsTimetable'
 
-export interface SpsTimetableParam extends ElsTimetableParam {
+export type SpsTimetableParam = {
   /** 학교과정명 */
   readonly SCHUL_CRSE_SC_NM?: string
   /** 강의실명 */
   readonly CLRM_NM?: string
-}
+} & ElsTimetableParam

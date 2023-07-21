@@ -1,6 +1,6 @@
-import { BaseTimetableParam } from '.'
+import type { BaseTimetableParam } from '.'
 
-export interface ElsTimetableParam extends BaseTimetableParam {
+export type ElsTimetableParam = {
   /** 교시 */
   readonly PERIO?: string
-}
+} & BaseTimetableParam

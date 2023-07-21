@@ -1,4 +1,4 @@
-export interface AcaInsTiInfoResponse {
+export type AcaInsTiInfoResponse = {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 시도교육청명 */

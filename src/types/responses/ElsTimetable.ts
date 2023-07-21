@@ -1,6 +1,6 @@
-import { BaseSchoolResponse } from '.'
+import type { BaseSchoolResponse } from '.'
 
-export interface ElsTimetableResponse extends BaseSchoolResponse {
+export type ElsTimetableResponse = {
   /** 학년도 */
   readonly AY: string
   /** 학기 */
@@ -17,4 +17,4 @@ export interface ElsTimetableResponse extends BaseSchoolResponse {
   readonly ITRT_CNTNT: string
   /** 수정일 */
   readonly LOAD_DTM: string
-}
+} & BaseSchoolResponse

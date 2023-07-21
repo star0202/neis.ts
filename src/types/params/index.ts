@@ -1,15 +1,15 @@
-import { AcaInsTiInfoParam } from './AcaInsTiInfo'
-import { ClassInfoParam } from './ClassInfo'
-import { ElsTimetableParam } from './ElsTimetable'
-import { HisTimetableParam } from './HisTimetable'
-import { MealServiceDietInfoParam } from './MealServiceDietInfo'
-import { MisTimetableParam } from './MisTimetable'
-import { SchoolInfoParam } from './SchoolInfo'
-import { SchoolMajorinfoParam } from './SchoolMajorinfo'
-import { SchoolScheduleParam } from './SchoolSchedule'
-import { SchulAflcoinfoParam } from './SchulAflcoinfo'
-import { SpsTimetableParam } from './SpsTimetable'
-import { TiClrminfoParam } from './TiClrminfo'
+import type { AcaInsTiInfoParam } from './AcaInsTiInfo'
+import type { ClassInfoParam } from './ClassInfo'
+import type { ElsTimetableParam } from './ElsTimetable'
+import type { HisTimetableParam } from './HisTimetable'
+import type { MealServiceDietInfoParam } from './MealServiceDietInfo'
+import type { MisTimetableParam } from './MisTimetable'
+import type { SchoolInfoParam } from './SchoolInfo'
+import type { SchoolMajorinfoParam } from './SchoolMajorinfo'
+import type { SchoolScheduleParam } from './SchoolSchedule'
+import type { SchulAflcoinfoParam } from './SchulAflcoinfo'
+import type { SpsTimetableParam } from './SpsTimetable'
+import type { TiClrminfoParam } from './TiClrminfo'
 
 export * from './AcaInsTiInfo'
 export * from './ClassInfo'
@@ -44,7 +44,7 @@ export type TimetableParams =
   | HisTimetableParam
   | SpsTimetableParam
 
-export interface DefaultParam {
+export type DefaultParam = {
   /** 인증키 */
   readonly key?: string
   /** 호출 문서(xml, json) */
@@ -55,14 +55,14 @@ export interface DefaultParam {
   readonly pSize?: number
 }
 
-export interface DefaultParamWithSchoolParam extends DefaultParam {
+export type DefaultParamWithSchoolParam = {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 표준학교코드 */
   readonly SD_SCHUL_CODE: string
-}
+} & DefaultParam
 
-export interface BaseTimetableParam extends DefaultParamWithSchoolParam {
+export type BaseTimetableParam = {
   /** 학년도 */
   readonly AY?: string
   /** 학기 */
@@ -77,4 +77,4 @@ export interface BaseTimetableParam extends DefaultParamWithSchoolParam {
   readonly TI_FROM_YMD?: string
   /** 시간표종료일자 */
   readonly TI_TO_YMD?: string
-}
+} & DefaultParamWithSchoolParam

@@ -1,6 +1,6 @@
-import { DefaultParam } from '.'
+import type { DefaultParam } from '.'
 
-export interface SchoolMajorinfoParam extends DefaultParam {
+export type SchoolMajorinfoParam = {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 표준학교코드 */
@@ -9,4 +9,4 @@ export interface SchoolMajorinfoParam extends DefaultParam {
   readonly DGHT_CRSE_SC_NM?: string
   /** 계열명 */
   readonly ORD_SC_NM?: string
-}
+} & DefaultParam

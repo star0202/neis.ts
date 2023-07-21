@@ -1,6 +1,6 @@
-import { DefaultParam } from '.'
+import type { DefaultParam } from '.'
 
-export interface AcaInsTiInfoParam extends DefaultParam {
+export type AcaInsTiInfoParam = {
   /** 시도교육청코드 */
   readonly ATPT_OFCDC_SC_CODE: string
   /** 행정구역명 */
@@ -15,4 +15,4 @@ export interface AcaInsTiInfoParam extends DefaultParam {
   readonly LE_ORD_NM?: string
   /** 교습과정명 */
   readonly LE_CRSE_NM?: string
-}
+} & DefaultParam
