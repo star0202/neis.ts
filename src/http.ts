@@ -14,6 +14,7 @@ import type {
   MisTimetableResponse,
   NeisRequestConfig,
   Params,
+  Responses,
   SchoolInfoParam,
   SchoolInfoResponse,
   SchoolMajorinfoParam,
@@ -142,11 +143,11 @@ export class NeisRequest {
     return this.get<TiClrminfoResponse>('tiClrminfo', params)
   }
 
-  private async get<T>(endpoint: string, params: Params) {
+  private async get<T extends Responses>(endpoint: string, params: Params) {
     return this.request<T>('GET', endpoint, this.timeout, params)
   }
 
-  private async request<T>(
+  private async request<T extends Responses>(
     method: string,
     endpoint: string,
     timeout: number,
