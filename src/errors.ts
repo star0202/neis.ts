@@ -7,7 +7,7 @@ export class RequestTimeoutError extends NeisError {
   }
 }
 
-abstract class HTTPError extends NeisError {
+class HTTPError extends NeisError {
   constructor(code: string, msg: string) {
     super(`${code} ${msg}`)
     this.name = this.constructor.name
