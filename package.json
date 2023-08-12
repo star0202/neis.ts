@@ -1,7 +1,7 @@
 {
   "name": "neis.ts",
   "version": "0.0.0-development",
-  "description": "An NEIS Open API Wrapper written in TypeScript",
+  "description": "A NEIS Open API Wrapper written in TypeScript",
   "repository": {
     "type": "git",
     "url": "https://github.com/star0202/neis.ts"
