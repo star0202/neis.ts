@@ -16,10 +16,10 @@ jobs:
 
       - uses: pnpm/action-setup@v2
 
-      - name: Setup node.js 19
+      - name: Setup node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 19
+          node-version: 20
           cache: 'pnpm'
 
       - name: Enable Corepack
