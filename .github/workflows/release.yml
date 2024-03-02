@@ -14,10 +14,13 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+
       - name: Setup node.js 19
         uses: actions/setup-node@v4
         with:
           node-version: 19
+          cache: 'pnpm'
 
       - name: Enable Corepack
         run: corepack enable
